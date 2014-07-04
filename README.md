@@ -19,15 +19,15 @@ broken. Also accepts 'exit' which quits the program with exit code 1.
 Asks the user for the type of image required. The currently accepted
 types are:
 ```
-		xxsmall 				    xxlarge 					app
+		xxsmall 				xxlarge 				app
 		xxsmall-2 				exhibition  				long_shot
 		xxsmall-gist 			exhibition2
-		xxsmall-linear 	   	exhibition_rotation
+		xxsmall-linear 	   	    exhibition_rotation
 		xsmall 					supersize
-		small					    supersize_rotation
+		small					supersize_rotation
 		medium-hi 				supsersize_simple
 		medium 					custom
-		large 					    xlarge_rotation
-		xlarge 				   	    medium_rotation
+		large 					xlarge_rotation
+		xlarge 				   	medium_rotation
 ```
 
