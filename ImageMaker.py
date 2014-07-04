@@ -166,6 +166,41 @@ def askForObjectNumbers():
     return object_list
 
 
+def askForSnaps():
+    '''
+    This function asks for the snapshot you want and checks it's in the range 0-28
+    '''
+
+    possibleobjects = list(range(29)) #number of possible objects max = 29, min = 0
+
+    isokay = False #this is set to false initially, as we are going to perform checks based on it
+
+    while not isokay:
+		snap_list = [] #for appending later
+		input = ""
+		correctlist = True
+
+		while input != "finished":
+			input = raw_input("Which snapshots do you want to use? Enter 'finished' once you are done: ")
+			if input != "finished" and input != "":
+				snap_list.append(int(input))
+
+		for snap in snap_list:
+			if snap not in possibleobjects:
+				print '''Please try again. Objects must be integers in range 0-9999. First bad: ''', snap
+				correctlist = False
+				break
+			else:
+				None
+
+		if correctlist == False:
+			continue
+		else:
+			isokay = True
+
+
+
+    return object_list
 
 #begin questioning
 
@@ -177,8 +212,11 @@ size_list = askForImageType()
 
 object_list = askForObjectNumbers()
 
+snap_list = askForSnaps()
+
 #testing variables
 
 print 'Usertype: ', usertype
 print 'Size List: ', size_list, type(size_list)
 print 'Object List: ', object_list, type(object_list)
+print 'Snap List: ', snap_list, type(object_list)
