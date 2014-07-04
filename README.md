@@ -19,7 +19,7 @@ broken. Also accepts 'exit' which quits the program with exit code 1.
 Asks the user for the type of image required. The currently accepted
 types are:
 ```
-		xxsmall 				xxlarge 				app
+		xxsmall 				xxlarge 			       app
 		xxsmall-2 				exhibition  				long_shot
 		xxsmall-gist 			exhibition2
 		xxsmall-linear 	   	    exhibition_rotation
@@ -31,3 +31,7 @@ types are:
 		xlarge 				   	medium_rotation
 ```
 
+###askForObjectNumbers
+
+Similar to above. This function asks for the object lists and checks
+to see if they are integers in the range 0-9999.

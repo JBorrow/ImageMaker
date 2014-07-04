@@ -109,13 +109,13 @@ def askForImageType():
 
 		while input != "finished":
 			input = str(raw_input("What sizes do you require? Enter 'finished' once you are done: "))
-			if input != "finished":
+			if input != "finished" and input != "":
 				size_list.append(input)
 
 		for size in size_list:
 			if size not in possiblesizes:
 				print '''Please try again. If you don't know the possible sizes, please consult 
-the documentation. Don't enter return characters! First bad size: ''', size
+the documentation. First bad size: ''', size
 				correctlist = False
 				break
 			else:
@@ -128,6 +128,43 @@ the documentation. Don't enter return characters! First bad size: ''', size
 
 	return size_list
 
+def askForObjectNumbers():
+    '''
+    This function asks for the object lists and checks to see if they are
+    integers in the range 0-9999.
+    '''
+
+    possibleobjects = list(range(10000)) #number of possible objects max = 9999, min = 0
+
+    isokay = False #this is set to false initially, as we are going to perform checks based on it
+
+    while not isokay:
+		object_list = [] #for appending later
+		input = ""
+		correctlist = True
+
+		while input != "finished":
+			input = raw_input("Which objects do you want to image? Enter 'finished' once you are done: ")
+			if input != "finished" and input != "":
+				object_list.append(int(input))
+
+		for number in object_list:
+			if number not in possibleobjects:
+				print '''Please try again. Objects must be integers in range 0-9999. First bad: ''', number
+				correctlist = False
+				break
+			else:
+				None
+
+		if correctlist == False:
+			continue
+		else:
+			isokay = True
+
+
+
+    return object_list
+
 
 
 #begin questioning
@@ -138,8 +175,10 @@ usertype = askForUserType()
 
 size_list = askForImageType()
 
+object_list = askForObjectNumbers()
 
 #testing variables
 
 print 'Usertype: ', usertype
 print 'Size List: ', size_list, type(size_list)
+print 'Object List: ', object_list, type(object_list)
