@@ -16,7 +16,9 @@ broken. Also accepts 'exit' which quits the program with exit code 1.
 
 ###askForImageType
 
-Asks the user for the type of image required. The currently accepted types are:
+Asks the user for the type of image required. The currently accepted
+types are:
+```
 		xxsmall 				    xxlarge 					app
 		xxsmall-2 				exhibition  				long_shot
 		xxsmall-gist 			exhibition2
@@ -27,4 +29,5 @@ Asks the user for the type of image required. The currently accepted types are:
 		medium 					custom
 		large 					    xlarge_rotation
 		xlarge 				   	    medium_rotation
+```
 
