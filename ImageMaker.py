@@ -161,8 +161,6 @@ def askForObjectNumbers():
 		else:
 			isokay = True
 
-
-
     return object_list
 
 
@@ -198,13 +196,35 @@ def askForSnaps():
 		else:
 			isokay = True
 
-
-
     return object_list
+
+def askForType():
+    '''
+    Asks for the type of images that you want to create. Possible types include:
+    "position" - makes an image at some given co-ords
+    "objectimage" - makes an image based on object numbers
+    "objectgallery" - makes a "gallery" of many object numbers
+    "specialgallery" - makes a supersize image with lots of xsmall images on top
+    '''
+
+    possibletypes =["position",
+                      "objectimage",
+                      "objectgallery",
+                      "specialgallery"]
+
+    while True:
+        input = str(raw_input("What type of image would you like?: "))
+
+        if input in possibletypes:
+            return input
+        
+
 
 #begin questioning
 
 #ask what type of experience they want
+
+imagetype = askForType()
 
 usertype = askForUserType()
 
@@ -216,6 +236,7 @@ snap_list = askForSnaps()
 
 #testing variables
 
+print 'Image Type: ' imagetype
 print 'Usertype: ', usertype
 print 'Size List: ', size_list, type(size_list)
 print 'Object List: ', object_list, type(object_list)
