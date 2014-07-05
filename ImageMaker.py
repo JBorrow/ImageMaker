@@ -327,7 +327,7 @@ if variables['type'] == 'position':
 
 	variables['rotating'] = trueFalse("Do you want a rotating image? (y/n): ")
 
-	if 'supersize' in variables['size_list'] and variables['rotating'] == true:
+	if 'supersize' in variables['size_list'] and variables['rotating'] == True:
 		print 'WARNING: MAKING ROTATING IMAGES USES LOTS OF MEMORY, ESPECIALLY WITH SUPSERSIZE'
 		keepgoing = trueFalse("Continue - you might break Cosma...? (y/n): ")
 		if keepgoing == False:
@@ -338,5 +338,45 @@ if variables['type'] == 'position':
 
 	areYouSure(variables,['type','snap_list','size_list','type','position','rotating','text'])
 
+	# STATEMENT FOR MAKING IMAGE HERE FOR TYPE = POSITION
+
+elif variables['type'] in ["objectimage","objectgallery","specialgallery"]:
+
+	variables['object_list'] = askForObjectNumbers()
+
+	if variables['type'] == 'objectimage':
+
+		variables['rotating'] = trueFalse("Do you want a rotating image? (y/n): ")
+
+		areYouSure(variables,['type','snap_list','size_list','type','object_list','rotating'])
+
+		# STATEMENT FOR MAKING IMAGE HERE FOR TYPE = OBJECTIMAGE
+
+	elif variables['type'] in ["objectgallery","specialgallery"]:
+
+		if askForUserType() == "b":
+
+			areYouSure(variables,['type','snap_list','size_list','type','position','rotating','text'])
+
+			if variables['type'] == 'objectgallery':
+				print "object"
+				# STATEMENT FOR MAKING IMAGE HERE FOR TYPE = OBJECTGALLERY
+
+			elif variables['type'] == 'specialgallery':
+				print "special"
+				# STATEMENT FOR MAKING IMAGE HERE FOR TYPE = SPECIALGALLERY
+
+			else:
+				print "Invalid inputs"
+
+		else:
+			print "advanced"
+			#PUT ADVANCED OPTIONS HERE
+
+
+
+	else:
+		print "Invalid inputs"
 else:
-	print "not finished"
+	print "Invalid inputs"
+	exit(-1)

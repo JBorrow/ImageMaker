@@ -6,6 +6,40 @@ The ImageMaker module creates some prompts to enter the stuff for creating image
 Original base code (make\_standard\_images.py) by Richard Bower, however
 this module was written by Joshua Borrow.
 
+Using the program
+-----------------
+
+The program is very simple to use - it simply asks you some questions about what
+you want to make from your images and then makes them using the Eagle routines.
+
+Here is an example:
+```
+What type of image would you like?: position
+Which snapshots do you want to use? Enter 'finished' once you are done: 28
+Which snapshots do you want to use? Enter 'finished' once you are done: 27
+Which snapshots do you want to use? Enter 'finished' once you are done: 26
+Which snapshots do you want to use? Enter 'finished' once you are done: finished
+What sizes do you require? Enter 'finished' once you are done: xsmall
+What sizes do you require? Enter 'finished' once you are done: large
+What sizes do you require? Enter 'finished' once you are done: finished
+Please enter your co-ordniates in units of Mpc
+Please enter the first co-ordinate: 28
+Please enter the second co-ordinate: 39
+Please enter the third co-ordinate: 10
+Do you want a rotating image? (y/n): y
+Do you want descriptive text on the image? (y/n): y
+Here is a list of the variables that are relevant:
+type:  position
+snap_list:  [28, 27, 26]
+size_list:  ['xsmall', 'large']
+type:  position
+position:  [ 28.  39.  10.]
+rotating:  True
+text:  True
+Are you happy with these?
+Type 'yes' to make the images and start the process or no to quit:
+```
+
 Functions
 ---------
 
