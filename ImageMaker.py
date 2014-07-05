@@ -24,8 +24,8 @@ snap_list = [] #list of snapshots that are required
 object_list = [] #list of objects that are required
 size_list = ['xsmall'] #sizes chosen from the styles DB
 position = N.array([0,0,0]) #position center
-types = ['normal'] #types of images, see documentation
-text = True #text e.g. position on image 
+types = ['position'] #types of images, see documentation
+text = True #text e.g. position on image
 deletefiles = True #cleans up after making gallery
 nfof = 50 #number of fof
 centre_fof = 0
@@ -55,8 +55,8 @@ usertype = ""
 
 def askForUserType():
 	'''
-	Asks the user for their type and raises an exception if somehow broken. Also accepts 'exit' which
-	quits the program with exit code 1
+	Asks the user for their type and raises an exception if somehow broken. Also
+	accepts 'exit' which quits the program with exit code 1.
 	'''
 	usertype = ""
 
@@ -86,7 +86,7 @@ def askForImageType():
 		medium 					custom
 		large 					xlarge_rotation
 		xlarge 					medium_rotation
-		
+
 	'''
 
 	possiblesizes = ["xxsmall" 			,	"xxlarge", 				"app",
@@ -114,7 +114,7 @@ def askForImageType():
 
 		for size in size_list:
 			if size not in possiblesizes:
-				print '''Please try again. If you don't know the possible sizes, please consult 
+				print '''Please try again. If you don't know the possible sizes, please consult
 the documentation. First bad size: ''', size
 				correctlist = False
 				break
@@ -217,12 +217,60 @@ def askForType():
 
         if input in possibletypes:
             return input
-        
+
+def askForPosition():
+    '''
+    Asks for the position if the position is chosen as the type. Asks for
+    the co-ordinates and then puts them into a numpy array.
+    Enter in units of Mpc
+    '''
+
+    print 'Please enter your co-ordniates in units of Mpc'
+    x = float(raw_input("Please enter the first co-ordinate: "))
+    y = float(raw_input("Please enter the second co-ordinate: "))
+    z = float(raw_input("Please enter the third co-ordinate: "))
+
+    return N.array([x,y,z])
+
+def trueFalse(askerstring):
+	'''
+	Input  yes/no or other ways of saying so and returns True/False as
+	appropriate.
+	'''
+	yes = ["yes","YES","y","Y"]
+	no = ["no","n","N","NO"]
+
+	input = ""
+
+	while input not in (yes+no):
+		input = str(raw_input(askerstring))
+
+	if input in yes:
+		return True
+	elif input in no:
+		return False
+	else:
+		raise InputError(msg = "How did you do that? In trueFalse function if statement")
+
+
+def singleVarAsker(askerstring,default):
+	'''
+	A simple variable query - with no extreme values. Output type = int
+	'''
+	input = ""
+
+	while input == "":	#these statements are used incase return key pressed
+		input = str(raw_input(askerstring + " Default = " + str(default) + ": "))
+
+	outs = int(input)
+
+	return outs
 
 
 #begin questioning
 
 #ask what type of experience they want
+
 
 imagetype = askForType()
 
@@ -231,13 +279,15 @@ usertype = askForUserType()
 size_list = askForImageType()
 
 object_list = askForObjectNumbers()
+position = askForPosition()
 
 snap_list = askForSnaps()
 
 #testing variables
 
-print 'Image Type: ' imagetype
+print 'Image Type: ', imagetype
 print 'Usertype: ', usertype
 print 'Size List: ', size_list, type(size_list)
 print 'Object List: ', object_list, type(object_list)
+print 'Position :', position, type(position)
 print 'Snap List: ', snap_list, type(object_list)
