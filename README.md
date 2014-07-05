@@ -14,7 +14,7 @@ Functions
 Asks the user for their type and raises an exception if somehow
 broken. Also accepts 'exit' which quits the program with exit code 1.
 
-###askForImageType()
+###askForImageSize()
 
 Asks the user for the type of image required. The currently accepted
 types are:

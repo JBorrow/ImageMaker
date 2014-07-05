@@ -20,30 +20,30 @@ import numpy as N
 
 #initialise variables - we hold in a dictionary as this is easiest.
 variables = {
-'snap_list' = [], #list of snapshots that are required
-'object_list' = [], #list of objects that are required
-'size_list' = ['xsmall'], #sizes chosen from the styles DB
-'position' = N.array([0,0,0]), #position center
-'types' = ['position'], #types of images, see documentation
-'text' = True, #text e.g. position on image
-'deletefiles' = True, #cleans up after making gallery
-'nfof' = 50, #number of fof
-'centre_fof' = 0,
-'first_fof' = 0,
-'fof_step' = 1,
-'subsample' = 1, #subsample factor to not read in all particles
-'gas_cmap' = None,
+'snap_list' : [], #list of snapshots that are required
+'object_list' : [], #list of objects that are required
+'size_list' : ['xsmall'], #sizes chosen from the styles DB
+'position' : N.array([0,0,0]), #position center
+'type' : 'position', #types of images, see documentation
+'text' : True, #text e.g. position on image
+'deletefiles' : True, #cleans up after making gallery
+'nfof' : 50, #number of fof
+'centre_fof' : 0,
+'first_fof' : 0,
+'fof_step' : 1,
+'subsample' : 1, #subsample factor to not read in all particles
+'gas_cmap' : None,
 
 #just for rotations
 
-'rotating' = False, #rotating image only works with normal/position
+'rotating' : False, #rotating image only works with normal/position
 
 
 #just for 'special' gallery - EXPERIMENTAL AND DOESN'T WORK YET
 
-'remake_gallery' = True, #remake gallery of xsmall images
-'minitype' = 'gas', #type of the miniature images
-'label_only' = False, #no minature images if True
+'remake_gallery' : True, #remake gallery of xsmall images
+'minitype' : 'gas', #type of the miniature images
+'label_only' : False, #no minature images if True
 }
 
 #questioning variables
@@ -73,7 +73,7 @@ def askForUserType():
 	else:
 		raise InputError(msg = "I don't know how, but you broke me in the askForUserType() function")
 
-def askForImageType():
+def askForImageSize():
 	'''
 	Asks the user for the type of image required. The currently accepted types are:
 		xxsmall 				xxlarge 					app
@@ -196,7 +196,7 @@ def askForSnaps():
 		else:
 			isokay = True
 
-    return object_list
+    return snap_list
 
 def askForType():
     '''
@@ -300,7 +300,7 @@ def areYouSure(valuedictionary, items):
 	print "Here is a list of the variables that are relevant:"
 
 	for item in items:
-		print item + ": " + valuedictionary[item]
+		print item + ": " , valuedictionary[item]
 
 	print "Are you happy with these?"
 
@@ -309,8 +309,34 @@ def areYouSure(valuedictionary, items):
 	if makeornot == True:
 		return
 	else:
-		print Exiting...
+		print 'Exiting...'
 		exit(3)
 
 
 #begin questioning
+
+variables['type'] = askForType()
+
+variables['snap_list'] = askForSnaps()
+
+variables['size_list'] = askForImageSize()
+
+if variables['type'] == 'position':
+
+	variables['position'] = askForPosition()
+
+	variables['rotating'] = trueFalse("Do you want a rotating image? (y/n): ")
+
+	if 'supersize' in variables['size_list'] and variables['rotating'] == true:
+		print 'WARNING: MAKING ROTATING IMAGES USES LOTS OF MEMORY, ESPECIALLY WITH SUPSERSIZE'
+		keepgoing = trueFalse("Continue - you might break Cosma...? (y/n): ")
+		if keepgoing == False:
+			print 'Exiting before you do any damage...'
+			exit(-1)
+
+	variables['text'] = trueFalse("Do you want descriptive text on the image? (y/n): ")
+
+	areYouSure(variables,['type','snap_list','size_list','type','position','rotating','text'])
+
+else:
+	print "not finished"
