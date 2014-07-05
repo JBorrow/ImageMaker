@@ -18,33 +18,33 @@ Josh Borrow
 import numpy as N
 #import make_standard_images as msi
 
-#initialise variables
-
-snap_list = [] #list of snapshots that are required
-object_list = [] #list of objects that are required
-size_list = ['xsmall'] #sizes chosen from the styles DB
-position = N.array([0,0,0]) #position center
-types = ['position'] #types of images, see documentation
-text = True #text e.g. position on image
-deletefiles = True #cleans up after making gallery
-nfof = 50 #number of fof
-centre_fof = 0
-first_fof = 0
-fof_step = 1
-subsample = 1 #subsample factor to not read in all particles
-gas_cmap = None
+#initialise variables - we hold in a dictionary as this is easiest.
+variables = {
+'snap_list' = [], #list of snapshots that are required
+'object_list' = [], #list of objects that are required
+'size_list' = ['xsmall'], #sizes chosen from the styles DB
+'position' = N.array([0,0,0]), #position center
+'types' = ['position'], #types of images, see documentation
+'text' = True, #text e.g. position on image
+'deletefiles' = True, #cleans up after making gallery
+'nfof' = 50, #number of fof
+'centre_fof' = 0,
+'first_fof' = 0,
+'fof_step' = 1,
+'subsample' = 1, #subsample factor to not read in all particles
+'gas_cmap' = None,
 
 #just for rotations
 
-rotating = False #rotating image only works with normal/position
+'rotating' = False, #rotating image only works with normal/position
 
 
 #just for 'special' gallery - EXPERIMENTAL AND DOESN'T WORK YET
 
-remake_gallery = True #remake gallery of xsmall images
-minitype = 'gas' #type of the miniature images
-label_only = False #no minature images if True
-
+'remake_gallery' = True, #remake gallery of xsmall images
+'minitype' = 'gas', #type of the miniature images
+'label_only' = False, #no minature images if True
+}
 
 #questioning variables
 
@@ -266,28 +266,51 @@ def singleVarAsker(askerstring,default):
 
 	return outs
 
+def miniTypeAsker():
+	'''
+	Asks for the type of the miniature images for the 'special gallery'.
+
+	Acceptable types:
+	'gas'
+	'dark'
+	'hi'
+	'phase'
+	'star'
+	'''
+
+	possibletypes = ['gas',
+					 'dark',
+					 'hi',
+					 'phase',
+					 'star']
+
+	input = ""
+
+	while input not in possibletypes:
+		input = str(raw_input("What type of miniature image would you like superimposed: "))
+
+	return input
+
+def areYouSure(valuedictionary, items):
+	'''
+	This goes through the variables and checks if you are happy. If you are not
+	it will quit - exit code 3.
+	'''
+
+	print "Here is a list of the variables that are relevant:"
+
+	for item in items:
+		print item + ": " + valuedictionary[item]
+
+	print "Are you happy with these?"
+
+	makeornot = trueFalse("Type 'yes' to make the images and start the process or no to quit: ")
+
+	if makeornot == True:
+		return
+	else:
+		print Exiting...
+		exit(3)
+
 
 #begin questioning
-
-#ask what type of experience they want
-
-
-imagetype = askForType()
-
-usertype = askForUserType()
-
-size_list = askForImageType()
-
-object_list = askForObjectNumbers()
-position = askForPosition()
-
-snap_list = askForSnaps()
-
-#testing variables
-
-print 'Image Type: ', imagetype
-print 'Usertype: ', usertype
-print 'Size List: ', size_list, type(size_list)
-print 'Object List: ', object_list, type(object_list)
-print 'Position :', position, type(position)
-print 'Snap List: ', snap_list, type(object_list)

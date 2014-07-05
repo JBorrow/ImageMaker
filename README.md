@@ -65,8 +65,8 @@ Asks for a yes or no input. Askerstring is printed on the same line
 as the input. Inputs can be in the form:
 
 ```
-yes = ["yes","YES","y","Y"]
-no = ["no","n","N","NO"]
+	yes = ["yes","YES","y","Y"]
+	no = ["no","n","N","NO"]
 ```
 
 Outputs True/False for yes/no respectively.
@@ -76,3 +76,22 @@ Outputs True/False for yes/no respectively.
 
 A very simple variable asker - prints askerstring and waits for input.
 Outputs an integer. Used for asking for number of friends of friends etc.
+
+###miniTypeAsker()
+
+Asks for the type of the miniature images for the 'special gallery'.
+
+Acceptable types:
+
+```
+	'gas'
+	'dark'
+	'hi'
+	'phase'
+	'star'
+```
+
+###areYouSure(valuedictionary, items)
+
+This goes through the variables and checks if you are happy. If you are not
+it will quit - exit code 3.
