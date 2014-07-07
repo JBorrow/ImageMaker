@@ -123,6 +123,8 @@ class PlotterMethods:
                 eagle.make_rotation(fileInfo, imageParams, plotParams,
                 centre_fof=my_fof)
 
+        return
+
 
     def imageAtPosition(fileInfo, style=ImageStyles.xsmall, centre = [0.,0.,0.],
         gasCmap = None, deltaAngle = 2., text=True):
@@ -223,10 +225,12 @@ class PlotterMethods:
                 baseData.imageParams.angle = angle
                 eagle.make_single_image(baseData, mydata=data)
 
+        return
+
 
 
     def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
-        snapList = [28], objectList = [1172]):
+        snapList = [28], objectList = [1172], text = True):
         '''
         Makes a set of images for the standard object numbers (0-9999). Creates
         in a directory /Webpage/<Object Number, Centre co-ords, Gallery>
@@ -235,7 +239,7 @@ class PlotterMethods:
 
         #set up directories
         dir = "."
-        savedir = "./test_images"
+        saveDir = "./test_images"
 
         #create and save images
 
@@ -251,11 +255,51 @@ class PlotterMethods:
                         fileDir += "/rotation"
 
                     #now we get the file info for each object
-                    fileInfo = eagle.FileInfo(dir, snap, "",savedir + fileDir,
-                    rotating = rotating)
+                    fileInfo = eagle.FileInfo(dir, snap, "",saveDir + fileDir,
+                    rotating = rotating, text = text)
 
                     #and finally complete the image
                     self.fofGallery(fileInfo, size, first_fof = object, nfof=1)
 
+        return
 
-    def makeImageAtPosition(centre, rotating = False, text = True):
+
+    def makeImagesAtPosition(rotating = False, text = True, sizeList =
+        [ImageStyles.xsmall], snapList = [28], centreList =
+        [[0.,0.,0.]], text = True):
+        '''
+        Works the same as above however takes an argument of a list of numpy
+        arrays rather than the original. Also accepts a single list rather than
+        a list and converts it if neccessary.
+        '''
+
+        #conversion to list type
+        if type(centreList) != type([]):
+            centreList = [centreList]
+
+        #directory setup
+        dir = "."
+        saveDir = "./test_images"
+
+        #actual work
+        for size in sizeList:
+            for snap in snapList:
+                for centre in centreList:
+                    fileDir = ("Webpage/Centre%2.2f_%2.2f_%2.2f/Snapshot\
+                    %2.0f/%s"%(centre[0], centre[1], centre[2], snap, size))
+
+                    if rotating:
+                        file_dir = file_dir + "/rotation"
+
+
+                    fileInfo = eagle.FileInfo(dir, snap, "", saveDir + fileDir,
+                    rotating = rotating, text = text)
+
+                    #create the image
+                    self.imageAtPosition(fileInfo, size, centre = centre,
+                    text = text)
+
+        return
+
+
+    def makeObjectGallery
