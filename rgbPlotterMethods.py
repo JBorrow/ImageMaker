@@ -12,7 +12,7 @@ Josh Borrow
 
 from ImageStyles import *
 
-import plot_eagle_image as eagle
+#import plot_eagle_image as eagle
 import sys
 import numpy as N
 import time
@@ -96,7 +96,7 @@ class PlotterMethods:
 
         #now give these params to the eagle function
 
-        imageParams = eagle.ImageParams(width, scale, zoom=1., angle,
+        imageParams = eagle.ImageParams(width, scale, zoom=1., angle=angle,
         partplot=partplot, star_scale_factor = starScaleFactor,
         dark_scale_factor = darkScaleFactor, gas_cmap = gasCmap,
         T_limits = TLimits, use_logh = useLogh, perspective = perspective,
@@ -195,7 +195,7 @@ class PlotterMethods:
 
         #now give these params to the eagle function
 
-        imageParams = eagle.ImageParams(width, scale, zoom=1., angle,
+        imageParams = eagle.ImageParams(width, scale, zoom=1., angle=angle,
         partplot=partplot, star_scale_factor = starScaleFactor,
         dark_scale_factor = darkScaleFactor, gas_cmap = gasCmap,
         T_limits = TLimits, use_logh = useLogh, perspective = perspective,
@@ -226,7 +226,6 @@ class PlotterMethods:
                 eagle.make_single_image(baseData, mydata=data)
 
         return
-
 
 
     def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
@@ -266,7 +265,7 @@ class PlotterMethods:
 
     def makeImagesAtPosition(rotating = False, text = True, sizeList =
         [ImageStyles.xsmall], snapList = [28], centreList =
-        [[0.,0.,0.]], text = True):
+        [[0.,0.,0.]]):
         '''
         Works the same as above however takes an argument of a list of lists
         unlike than the original. Also accepts a single list rather than
@@ -335,4 +334,6 @@ class PlotterMethods:
 
         return
 
-    def makeSpecialGallery()
+
+    def makeSpecialGallery():
+        return
