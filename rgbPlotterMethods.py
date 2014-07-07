@@ -121,7 +121,7 @@ class PlotterMethods:
 
             for someFof in range(first_fof, first_fof+nfof):
                 eagle.make_rotation(fileInfo, imageParams, plotParams,
-                centre_fof=my_fof)
+                centre_fof=someFof)
 
         return
 
@@ -268,8 +268,8 @@ class PlotterMethods:
         [ImageStyles.xsmall], snapList = [28], centreList =
         [[0.,0.,0.]], text = True):
         '''
-        Works the same as above however takes an argument of a list of numpy
-        arrays rather than the original. Also accepts a single list rather than
+        Works the same as above however takes an argument of a list of lists
+        unlike than the original. Also accepts a single list rather than
         a list and converts it if neccessary.
         '''
 
@@ -302,4 +302,37 @@ class PlotterMethods:
         return
 
 
-    def makeObjectGallery
+    def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
+        snapList = [28], nfof = 50, deleteFiles = True, first_fof = 0,
+        fof_step = 1, subsample = 1):
+        '''
+        Makes a 'gallery' of images from the list of sizes of the first nfof
+        objects. So normally this would start at object 0 and make images
+        from 0 - 50.
+        '''
+
+        #directory setup
+        dir = "."
+        saveDir = "./test_images"
+
+
+        for size in sizeList:
+            for snap in snapList:
+                fileDir = ("/Webpage/Gallery/Snapshot%2.0f/%s"%(snap, size))
+                fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir,
+                rotating=False)
+
+                #create images
+                self.fofGallery(fileInfo, size, nfof, first_fof,
+                fof_step = fof_step)
+
+                #cleanup
+                os.system("cd " + fileInfo.savedir + " ; make_montage.csh")
+
+                if deletefiles:
+                    os.system('rm -r '+ fileInfo.savedir + "/Object*")
+
+
+        return
+
+    def makeSpecialGallery()
