@@ -253,16 +253,25 @@ def trueFalse(askerstring):
 		raise InputError(msg = "How did you do that? In trueFalse function if statement")
 
 
-def singleVarAsker(askerstring,default):
+def singleVarAsker(askerstring,default,typeofvar=int):
 	'''
-	A simple variable query - with no extreme values. Output type = int
+	A simple variable query - with no extreme values.
+	Accepted typesofvar:
+		int
+		float
+	all others are converted to strings.
 	'''
 	input = ""
 
 	while input == "":	#these statements are used incase return key pressed
 		input = str(raw_input(askerstring + " Default = " + str(default) + ": "))
 
-	outs = int(input)
+	if typeofvar == int:
+		outs = int(input)
+	elif typeofvar == float:
+		outs = float(input)
+	else:
+		outs = str(input)
 
 	return outs
 
@@ -338,7 +347,7 @@ if variables['type'] == 'position':
 
 	areYouSure(variables,['type','snap_list','size_list','type','position','rotating','text'])
 
-	# STATEMENT FOR MAKING IMAGE HERE FOR TYPE = POSITION
+	#msi.make_image_at_position(position,rotating,text)
 
 elif variables['type'] in ["objectimage","objectgallery","specialgallery"]:
 
@@ -350,7 +359,7 @@ elif variables['type'] in ["objectimage","objectgallery","specialgallery"]:
 
 		areYouSure(variables,['type','snap_list','size_list','type','object_list','rotating'])
 
-		# STATEMENT FOR MAKING IMAGE HERE FOR TYPE = OBJECTIMAGE
+		#msi.make_object_images(rotating,size_list,span_list,object_list)
 
 	elif variables['type'] in ["objectgallery","specialgallery"]:
 
@@ -370,8 +379,37 @@ elif variables['type'] in ["objectimage","objectgallery","specialgallery"]:
 				print "Invalid inputs"
 
 		else:
-			print "advanced"
-			#PUT ADVANCED OPTIONS HERE
+
+			variables['nfof'] = singleVarAsker("Enter the number of friends of friends (nfof)",nfof,int)
+			variables['first_fof'] = singleVarAsker("Enter the first friend of friend (first_fof)",first_fof,int)
+			variables['fof_step'] = singleVarAsker("Enter the friend of friend step length (fof_step)",fof_step,float)
+			variables['subsample'] = singleVarAsker("By how much do you want to subsample?",subsample,float)
+
+			if variables['type'] == 'objectgallery':
+
+				variables['deletefiles'] = trueFalse("Clean up after I am finished - delete files? (y/n): ")
+
+				areYouSure(variables,['type','snap_list','size_list','type',
+				'position','rotating','text','nfof','first_fof','fof_step',
+				'subsample','deletefiles'])
+
+				#OBJECTGALLERY STATEMENT CREATION
+
+			elif variables['type'] == 'specialgallery':
+
+				variables['centre_fof'] = singleVarAsker("Enter the centre friends of friends (centre_fof)",nfof,int)
+				variables['remake_gallery'] = trueFalse("Do you want to remake all of the smaller images? (y/n): ")
+				variables['label_only'] = trueFalse("Do you want only labels on your large image, not images? (y/n): ")
+				variables['minitype'] = miniTypeAsker()
+
+				areYouSure(variables,['type','snap_list','size_list','type',
+				'position','rotating','text','nfof','first_fof','fof_step',
+				'subsample','centre_fof','remake_gallery','label_only','minitype'])
+
+				#SPECIALGALLERY MAKE STATEMENT
+
+			else:
+				print "Invalid inputs"
 
 
 
