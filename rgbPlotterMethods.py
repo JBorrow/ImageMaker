@@ -222,3 +222,40 @@ class PlotterMethods:
             for angle in N.arange(delta_angle,360., delta_angle):
                 baseData.imageParams.angle = angle
                 eagle.make_single_image(baseData, mydata=data)
+
+
+
+    def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
+        snapList = [28], objectList = [1172]):
+        '''
+        Makes a set of images for the standard object numbers (0-9999). Creates
+        in a directory /Webpage/<Object Number, Centre co-ords, Gallery>
+        /Snapshot<snapshotnumber>/<size>
+        '''
+
+        #set up directories
+        dir = "."
+        savedir = "./test_images"
+
+        #create and save images
+
+        for size in sizeList:
+            for snap in snapList:
+                for object in objectList:
+                    #more directory setting up
+                    fileDir = ("/Webpage/Object%.0f/Snapshot%2.0f/%s"%(object,
+                    snap, size))
+
+                    if rotating:
+                        #save in a subdirectory called rotating
+                        fileDir += "/rotation"
+
+                    #now we get the file info for each object
+                    fileInfo = eagle.FileInfo(dir, snap, "",savedir + fileDir,
+                    rotating = rotating)
+
+                    #and finally complete the image
+                    self.fofGallery(fileInfo, size, first_fof = object, nfof=1)
+
+
+    def makeImageAtPosition(centre, rotating = False, text = True):
