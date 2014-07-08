@@ -20,7 +20,7 @@ Institute for Computational Cosmology
 '''
 
 from ImageStyles import *
-#from rgbPlotterMethods import *
+from rgbPlotterMethods import *
 
 #import plot_eagle_image as eagle
 import sys
@@ -94,7 +94,7 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
 
     #now we read some data
 
-    print "Reading Data!"
+    print "Reading Data! Using ReadGroupData from Eagle!"
 
     baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
     baseData.ReadGroupData(suppress = False, centre_fof = 0)
@@ -108,8 +108,8 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
 
     for someFof in range(first_fof, nfof, fof_step):
         #this next line checks and leaves a border around the edge
-        if not N.any(N.mod(N.abs(baseData.fof_centre[centre_fof]
-        - baseData.fof_centre[my_centre_fof]), baseData.boxsize)
+        if not N.any(N.mod(N.abs(baseData.fof_centre[someFof]
+        - baseData.fof_centre[fofForImage]), baseData.boxsize)
         > 0.7*N.array([0.3,0.3,0.5])*baseData.imageParams.width):
             print "Appending: ", someFof,
             centre_fof_list.append(someFof)
@@ -129,6 +129,43 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
     centre_fof_list[int(cFofLL/2) + 1], centre_fof_list[int(cFofLL/2) - 1])
 
     print "The objects we're going to use are: ", listOfObjects
+
+    #now let's check if they exist, and if they don't, we'll make them -
+    #unless we've been told not to - in which case we won't.
+
+    if not label_only:
+        for someFof in listOfObjects:
+            directory = "./test_images/Webpage/Gallery/Snapshot%2.0f/%s"
+            % (snapList[0], smallStyle['name'])
+            if not remake_gallery:
+                if os.path.isfile(directory)
+                    continue
+                else:
+                    print "Creating an image of Object ", someFof, "!"
+                    #set some info
+                    littleInfo = eagle.FileInfo(dir, snapList[0], "", directory,
+                    rotating = False)
+                    #create the image and save it in the 'directory'
+                    fofGallery(littleInfo, smallStyle, first_fof = someFof)
+
+            else:
+                print "Creating an image of Object ", someFof, "!"
+                #set some info
+                littleInfo = eagle.FileInfo(dir, snapList[0], "", directory,
+                rotating = False)
+                #create the image
+                fofGallery(littleInfo, smallStyle, first_fof = someFof)
+
+
+
+    print "Now creating the big image!"
+
+    #create directory
+    os.system("mkdir -p " + baseData.fileInfo.savedir)
+    #create the 'plot'
+    ax = baseData.plot_image(close_figure=False)
+
+
 
     return
 

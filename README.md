@@ -40,4 +40,14 @@ Hopefully this will work a lot better and will be a lot easier to work with.
 It will also allow us to create command-line input in a separate file as
 *all* variables will be able to be inputed rather than using local variables.
 
-Last updated : 07/07/2014
+
+### SpecialGallery.py ###
+
+This contains a function that creates a supersize image (by default) with
+xsmall images overlaid (by default). There will be six images overlaid by
+default.
+
+At the moment all it does is find the object numbers that are going to be
+imaged and placed on top.
+
+Last updated : 08/07/2014
