@@ -46,7 +46,6 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
     iterate this with a simple script.
     '''
 
-    print nfof
     #directory setup
     dir = "."
     savedir = "./test_images"
@@ -81,7 +80,7 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
 
     #now we set parameters so we can read data
 
-    fileInfo = eagle.FileInfo(dir, snap_list[0], "", savedir+filedir,
+    fileInfo = eagle.FileInfo(dir, snapList[0], "", savedir+filedir,
     rotating = False)
 
     imageParams = eagle.ImageParams(width, scale, zoom = 1., angle = 0,
@@ -95,6 +94,8 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
 
     #now we read some data
 
+    print "Reading Data!"
+
     baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
     baseData.ReadGroupData(suppress = False, centre_fof = 0)
     data = baseData.ReadParticleData(fofForImage)
@@ -102,6 +103,8 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
     #okay, now we can actually see which of the objects are in the picture
 
     centre_fof_list = []
+
+    print "Iterating to find object numbers!"
 
     for someFof in range(first_fof, nfof, fof_step):
         #this next line checks and leaves a border around the edge
