@@ -247,7 +247,7 @@ class PlotterMethods:
                 for object in objectList:
                     #more directory setting up
                     fileDir = ("/Webpage/Object%.0f/Snapshot%2.0f/%s"%(object,
-                    snap, size))
+                    snap, size['name']))
 
                     if rotating:
                         #save in a subdirectory called rotating
@@ -285,7 +285,8 @@ class PlotterMethods:
             for snap in snapList:
                 for centre in centreList:
                     fileDir = ("Webpage/Centre%2.2f_%2.2f_%2.2f/Snapshot\
-                    %2.0f/%s"%(centre[0], centre[1], centre[2], snap, size))
+                    %2.0f/%s"%(centre[0], centre[1], centre[2], snap,
+                    size['name']))
 
                     if rotating:
                         file_dir = file_dir + "/rotation"
@@ -317,7 +318,8 @@ class PlotterMethods:
 
         for size in sizeList:
             for snap in snapList:
-                fileDir = ("/Webpage/Gallery/Snapshot%2.0f/%s"%(snap, size))
+                fileDir = ("/Webpage/Gallery/Snapshot%2.0f/%s"%(snap,
+                size['name']))
                 fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir,
                 rotating=False)
 
@@ -332,8 +334,4 @@ class PlotterMethods:
                     os.system('rm -r '+ fileInfo.savedir + "/Object*")
 
 
-        return
-
-
-    def makeSpecialGallery():
         return

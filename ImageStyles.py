@@ -1,7 +1,7 @@
 '''
 
-These files are meant to replace make_standard_images.py as it is an uncommented
-mess.
+These files are meant to replace make_standard_images.py as it is an
+uncommented, unmodular mess (sorry Richard...)
 
 This file is a class containing dictionaries for holding the styles for the
 images.
@@ -18,6 +18,7 @@ class ImageStyles:
 	'''
 
 	xxsmall = {
+	'name' : 'xxsmall',
 	'width' : 0.1,
 	'scale' : [3.0, 10000.],
 	'star_scale_factor' : 5.,
@@ -28,6 +29,7 @@ class ImageStyles:
 	}
 
 	xxsmall_2 = {
+	'name' : 'xxsmall_2',
 	'width' : 0.1,
 	'scale' : [30.0, 10000.],
 	'star_scale_factor' : 5.,
@@ -38,6 +40,7 @@ class ImageStyles:
 	}
 
 	xxsmall_gist = {
+	'name' : 'xxsmall_gist',
 	'width' : 0.1,
 	'scale' : [30.0, 10000.],
 	'star_scale_factor' : 5.,
@@ -49,6 +52,7 @@ class ImageStyles:
 
 # linear scaled version of the one above. Good for gas, but not for stars
 	xxsmall_linear = {
+	'name' : 'xxsmall_linear',
 	'width' : 0.1,
 	'scale' : [0.1, 1000.],
 	'star_scale_factor' : 5.,
@@ -60,6 +64,7 @@ class ImageStyles:
 	}
 
 	xsmall = {
+	'name' : 'xsmall',
 	'width' : 0.5,
 	'scale' : [5.0, 10000.],
 	'star_scale_factor' : 3.,
@@ -70,6 +75,7 @@ class ImageStyles:
 	}
 
 	small = {
+	'name' : 'small',
 	'width' : 1.0,
 	'scale' : [5.0, 10000.],
 	'star_scale_factor' : 3.,
@@ -80,6 +86,7 @@ class ImageStyles:
 	}
 
 	medium_hi = {
+	'name' : 'medium_hi',
 	'width' : 2.0,
 	'scale' : [5.0, 10000.],
 	'star_scale_factor' : 3.,
@@ -89,6 +96,7 @@ class ImageStyles:
 	}
 
 	medium = {
+	'name' : 'medium',
 	'width' : 2.0,
 	'scale' : [2.0, 1000.],
 	'star_scale_factor' : 2.,
@@ -98,6 +106,7 @@ class ImageStyles:
 	}
 
 	large = {
+	'name' : 'large',
 	'width' : 5.0,
 	'scale' : [1.0, 1000.],
 	'star_scale_factor' : 1.,
@@ -107,6 +116,7 @@ class ImageStyles:
 	}
 
 	xlarge = {
+	'name' : 'xlarge',
 	'width' : 10.0,
 	'scale' : [1.0, 1000.],
 	'star_scale_factor' : 1.,
@@ -116,6 +126,7 @@ class ImageStyles:
 	}
 
 	xxlarge = {
+	'name' : 'xxlarge',
 	'width' : N.array([20., 20., 10.]),
 	'scale' : [1.0, 1000.],
 	'star_scale_factor' : 1.,
@@ -126,6 +137,7 @@ class ImageStyles:
 	}
 
 	exhibition = {
+	'name' : 'exhibition',
 	'width' : N.array([50., 50., 10.]),
 	'scale' : [1.0, 500.],
 	'star_scale_factor' : 1.,
@@ -136,6 +148,7 @@ class ImageStyles:
 	}
 
 	exhibition2 = {
+	'name' : 'exhibition2',
 	'width' : N.array([47., 30., 20.]),
 	'scale' : [1.0, 500.],
 	'star_scale_factor' : 1.,
@@ -148,6 +161,7 @@ class ImageStyles:
 	}
 
 	exhibition_rotation = {
+	'name' : 'exhibition_rotation',
 	'width' : 45,
 	'scale' : [1.0, 500.],
 	'star_scale_factor' : 1.,
@@ -160,6 +174,7 @@ class ImageStyles:
 	}
 
 	supersize = {
+	'name' : 'supersize',
 	'width' : N.array([100., 100., 20.]),
 	'scale' : [0.2, 500.],
 	'star_scale_factor' : 1.,
@@ -172,6 +187,7 @@ class ImageStyles:
 	}
 
 	supersize_rotation = {
+	'name' : 'supersize_rotation',
 	'width' : 100.,
 	'scale' : [0.2, 500.],
 	'star_scale_factor' : 1.,
@@ -184,6 +200,7 @@ class ImageStyles:
 	}
 
 	supersize_simple = {
+	'name' : 'supersize_simple',
 	'width' : N.array([100., 100., 20.]),
 	'scale' : [0.2, 500.],
 	'star_scale_factor' : 1.,
@@ -194,6 +211,7 @@ class ImageStyles:
 	}
 
 	custom = {
+	'name' : 'custom',
 	'width' : 15.0,
 	'scale' : [1.0, 1000.],
 	'star_scale_factor' : 1.,
@@ -203,6 +221,7 @@ class ImageStyles:
 	}
 
 	xlarge_rotation = {
+	'name' : 'xlarge_rotation',
 	'width' : 10.0,
 	'scale' : [1.0, 1000.],
 	'star_scale_factor' : 1.,
@@ -215,6 +234,7 @@ class ImageStyles:
 	}
 
 	medium_rotation = {
+	'name' : 'medium_rotation',
 	'width' : 2.0,
 	'scale' : [2.0, 1000.],
 	'star_scale_factor' : 2.,
@@ -227,6 +247,7 @@ class ImageStyles:
 	}
 
 	app = {
+	'name' : 'app',
 	'width' : 50.0,
 	'scale' : [0.3, 1000.],
 	'star_scale_factor' : 1.,
@@ -238,6 +259,7 @@ class ImageStyles:
 	}
 
 	long_shot = {
+	'name' : 'long_shot',
 	'width' : [10.0,10.0,20.0],
 	'scale' : [0.3, 1000.],
 	'star_scale_factor' : 1.,
