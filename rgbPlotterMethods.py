@@ -7,6 +7,8 @@ This file contains the methods that call from the Eagle image creations to give
 us more flexibility.
 
 Josh Borrow
+Durham University
+Institute for Computational Cosmology
 07/07/2014
 '''
 

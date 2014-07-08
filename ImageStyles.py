@@ -7,6 +7,8 @@ This file is a class containing dictionaries for holding the styles for the
 images.
 
 Josh Borrow
+Durham University
+Institute for Computational Cosmology
 07/07/2014
 '''
 
