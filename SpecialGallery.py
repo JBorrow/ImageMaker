@@ -22,7 +22,7 @@ Institute for Computational Cosmology
 from ImageStyles import *
 #from rgbPlotterMethods import *
 
-import plot_eagle_image as eagle
+#import plot_eagle_image as eagle
 import sys
 import numpy as N
 import time
@@ -30,107 +30,104 @@ import pylab as P
 import os
 import fnmatch
 
-class SpecialGallery:
-    def __init__(self):
-        return
 
-    def Make(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
-        remake_gallery = False, minitype = 'gas', label_only = False,
-        subsample = 1, snapList = [28],
-        largeStyle = ImageStyles.supersize_simple,
-        smallStyle = ImageStyles.xsmall):
-        '''
-        This method is the only thing in this class and is used to create the
-        image. It will also check if the small images have been created already
-        and if they have not it will create them. However, if remake_gallery =
-        True, it will remake all of the images (this can be very time consuming,
-        so use at your own peril.)
+def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
+    remake_gallery = False, minitype = 'gas', label_only = False,
+    subsample = 1, snapList = [28],
+    largeStyle = ImageStyles.supersize_simple,
+    smallStyle = ImageStyles.xsmall):
+    '''
+    This function is used to create the image. It will also check if the small
+    images have been created already and if they have not it will create them.
+    However, if remake_gallery = True, it will remake all of the images
+    (this can be very time consuming, so use at your own peril.)
 
-        Currently only one snapshot works for the snaplist, however you can
-        iterate this with a simple script.
-        '''
+    Currently only one snapshot works for the snaplist, however you can
+    iterate this with a simple script.
+    '''
 
-        #directory setup
-        dir = "."
-        savedir = "./test_images"
-        filedir = ("/Webpage/Gallery/Snapshot%2.0f/%s" %(snapList[0],
-                        largeStyle))
+    print nfof
+    #directory setup
+    dir = "."
+    savedir = "./test_images"
+    filedir = ("/Webpage/Gallery/Snapshot%2.0f/%s" %(snapList[0],
+                    largeStyle))
 
-        #rename original centre fof
-        fofForImage = centre_fof
+    #rename original centre fof
+    fofForImage = centre_fof
 
-        #check which objects are in the image - need to read the data
-        #first we check what size we want the large image to be:
+    #check which objects are in the image - need to read the data
+    #first we check what size we want the large image to be:
 
-        width = largeStyle['width']
-        scale = N.array(largeStyle['scale'])
-        star_scale_factor = largeStyle['star_scale_factor']
-        dark_scale_factor = largeStyle['dark_scale_factor']
-        TLimits = N.array(largeStyle['T_limits'])
+    width = largeStyle['width']
+    scale = N.array(largeStyle['scale'])
+    star_scale_factor = largeStyle['star_scale_factor']
+    dark_scale_factor = largeStyle['dark_scale_factor']
+    TLimits = N.array(largeStyle['T_limits'])
 
-        if 'pixels' in largeStyle.keys():
-            xPixels, yPixels = largeStyle['pixels']
+    if 'pixels' in largeStyle.keys():
+        xPixels, yPixels = largeStyle['pixels']
 
-        else:
-            xPixels, yPixels = 1024, 1024
+    else:
+        xPixels, yPixels = 1024, 1024
 
 
-        if 'use_logh' in largeStyle.keys():
-            use_logh = largeStyle['use_logh']
+    if 'use_logh' in largeStyle.keys():
+        use_logh = largeStyle['use_logh']
 
-        else:
-            use_logh = True
+    else:
+        use_logh = True
 
 
-        #now we set parameters so we can read data
+    #now we set parameters so we can read data
 
-        fileInfo = eagle.FileInfo(dir, snap_list[0], "", savedir+filedir,
-        rotating = False)
+    fileInfo = eagle.FileInfo(dir, snap_list[0], "", savedir+filedir,
+    rotating = False)
 
-        imageParams = eagle.ImageParams(width, scale, zoom = 1., angle = 0,
-        partplot = [True, False, False],
-        star_scale_factor = star_scale_factor,
-        dark_scale_factor = dark_scale_factor, T_limits = TLimits,
-        use_logh = use_logh, subsample = subsample)
+    imageParams = eagle.ImageParams(width, scale, zoom = 1., angle = 0,
+    partplot = [True, False, False],
+    star_scale_factor = star_scale_factor,
+    dark_scale_factor = dark_scale_factor, T_limits = TLimits,
+    use_logh = use_logh, subsample = subsample)
 
-        plotParams = eagle.PlotParams(xpixels = xPixels, ypixels = yPixels,
-        text = True)
+    plotParams = eagle.PlotParams(xpixels = xPixels, ypixels = yPixels,
+    text = True)
 
-        #now we read some data
+    #now we read some data
 
-        baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
-        baseData.ReadGroupData(suppress = False, centre_fof = 0)
-        data = baseData.ReadParticleData(fofForImage)
+    baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
+    baseData.ReadGroupData(suppress = False, centre_fof = 0)
+    data = baseData.ReadParticleData(fofForImage)
 
-        #okay, now we can actually see which of the objects are in the picture
+    #okay, now we can actually see which of the objects are in the picture
 
-        centre_fof_list = []
+    centre_fof_list = []
 
-        for someFof in range(first_fof, nfof, fof_step):
-            #this next line checks and leaves a border around the edge
-            if not N.any(N.mod(N.abs(baseData.fof_centre[centre_fof]
-            - baseData.fof_centre[my_centre_fof]), baseData.boxsize)
-            > 0.7*N.array([0.3,0.3,0.5])*baseData.imageParams.width):
-                print "Appending: ", someFof,
-                centre_fof_list.append(someFof)
+    for someFof in range(first_fof, nfof, fof_step):
+        #this next line checks and leaves a border around the edge
+        if not N.any(N.mod(N.abs(baseData.fof_centre[centre_fof]
+        - baseData.fof_centre[my_centre_fof]), baseData.boxsize)
+        > 0.7*N.array([0.3,0.3,0.5])*baseData.imageParams.width):
+            print "Appending: ", someFof,
+            centre_fof_list.append(someFof)
 
-        centre_fof_list.sort()
-        print "The objects in this image are: ", centre_fof_list
+    centre_fof_list.sort()
+    print "The objects in this image are: ", centre_fof_list
 
-        #now we will select the ones we want. We'll take two big two middle and
-        #two that are really small. Because we use int division,
-        #floats are not a matter
+    #now we will select the ones we want. We'll take two big two middle and
+    #two that are really small. Because we use int division,
+    #floats are not a matter
 
-        listOfObjects = []
-        cFofLL = len(centre_fof_list)
+    listOfObjects = []
+    cFofLL = len(centre_fof_list)
 
-        listOfObjects.extend(centre_fof_list[0], centre_fof_list[1],
-        centre_fof_list[-1], centre_fof_list[-2],
-        centre_fof_list[int(cFofLL/2) + 1], centre_fof_list[int(cFofLL/2) - 1])
+    listOfObjects.extend(centre_fof_list[0], centre_fof_list[1],
+    centre_fof_list[-1], centre_fof_list[-2],
+    centre_fof_list[int(cFofLL/2) + 1], centre_fof_list[int(cFofLL/2) - 1])
 
-        print "The objects we're going to use are: ", listOfObjects
+    print "The objects we're going to use are: ", listOfObjects
 
     return
 
-if __name__ == "__main__"
-    SpecialGallery.Make(100)
+if __name__ == "__main__":
+    specialGallery(100)
