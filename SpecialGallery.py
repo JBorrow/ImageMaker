@@ -35,7 +35,7 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
     remake_gallery = False, minitype = 'gas', label_only = False,
     subsample = 1, snapList = [28],
     largeStyle = ImageStyles.supersize_simple,
-    smallStyle = ImageStyles.xsmall):
+    smallStyle = ImageStyles.xsmall, saveDir = "./test_images"):
     '''
     This function is used to create the image. It will also check if the small
     images have been created already and if they have not it will create them.
@@ -48,7 +48,6 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
 
     #directory setup
     dir = "."
-    savedir = "./test_images"
     filedir = ("/Webpage/Gallery/Snapshot%2.0f/%s" %(snapList[0],
                     largeStyle))
 
@@ -121,12 +120,11 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
     #two that are really small. Because we use int division,
     #floats are not a matter
 
-    listOfObjects = []
     cFofLL = len(centre_fof_list)
 
-    listOfObjects.extend(centre_fof_list[0], centre_fof_list[1],
+    listOfObjects= [centre_fof_list[0], centre_fof_list[1],
     centre_fof_list[-1], centre_fof_list[-2],
-    centre_fof_list[int(cFofLL/2) + 1], centre_fof_list[int(cFofLL/2) - 1])
+    centre_fof_list[int(cFofLL/2) + 1], centre_fof_list[int(cFofLL/2) - 1]]
 
     print "The objects we're going to use are: ", listOfObjects
 
@@ -135,8 +133,8 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
 
     if not label_only:
         for someFof in listOfObjects:
-            directory = "./test_images/Webpage/Gallery/Snapshot%2.0f/%s"
-            % (snapList[0], smallStyle['name'])
+            directory = "./test_images/Webpage/Gallery/Snapshot%2.0f/%s\
+            /Object%4.4i" % (snapList[0], smallStyle['name'], someFof)
             if not remake_gallery:
                 if os.path.isfile(directory)
                     continue
@@ -164,6 +162,39 @@ def specialGallery(nfof, centre_fof = 0, fof_step = 1, first_fof = 0,
     os.system("mkdir -p " + baseData.fileInfo.savedir)
     #create the 'plot'
     ax = baseData.plot_image(close_figure=False)
+
+
+    #now we'd better get some cool stuff put on top of this big image...
+    print "Adding images on top!"
+
+    from matplotlib._png import read_png
+    from matplotlib.offsetbox import (TextArea, DrawingArea, OffsetImage,
+    AnnotationBbox)
+
+    for i in range(len(listOfObjects)):
+        #find the file
+        directory = "./test_images/Webpage/Gallery/Snapshot%2.0f/%s\
+        /Object%4.4i" % (snapList[0], smallStyle['name'], someFof)
+
+        #now we try to find the file and sort stuff out
+        try:
+            if minitype == 'gas':
+                filename = directory + "/" + fnmatch.filter( os.listdir(mydir),
+                "gas_image*" )[0]
+
+            elif minitype == 'star':
+                filename = directory + "/" + fnmatch.filter( os.listdir(mydir),
+                "star_image*" )[0]
+
+            else:
+                filename = directory + "/" + fnmatch.filter( os.listdir(mydir),
+                "phase_image*" )[0]
+
+        except IndexError:
+            print "The %s image does not exist for Object%4.4i"
+            % (smallStyle['name'], listOfObjects[i])
+            continue #nothing we can do, just try to keep going
+
 
 
 

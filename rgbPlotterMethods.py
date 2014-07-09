@@ -22,9 +22,14 @@ import pylab as P
 import os
 import fnmatch
 
+def ensureDir(directory):
+    d = os.path.dirname(directory)
+
+    if not os.path.exists(d)
+        os.system("mkdir " + str(d))
 
 def fofGallery(fileInfo, style=ImageStyles.xsmall, nfof=1, first_fof=1,
-    fof_step=1, gasCmap=None):
+    fof_step=1, gasCmap=None, partplot = [True, True, True, True, False]):
     '''
     This makes an image with a scaling suitable for looking at an individual
     galaxy. Object 1 is the first halo, and this method doesn't work for
@@ -108,7 +113,7 @@ def fofGallery(fileInfo, style=ImageStyles.xsmall, nfof=1, first_fof=1,
     #now we make the images
 
     if not fileInfo.rotating:
-        print " Making fof images for halos", first_fof, to ,
+        print " Making fof images for halos", first_fof, "to" ,
         first_fof + nfof - 1
 
         eagle.make_gallery(fileInfo, imageParams, plotParams, nfof=nfof,
@@ -126,7 +131,8 @@ def fofGallery(fileInfo, style=ImageStyles.xsmall, nfof=1, first_fof=1,
 
 
 def imageAtPosition(fileInfo, style=ImageStyles.xsmall, centre = [0.,0.,0.],
-    gasCmap = None, deltaAngle = 2., text=True):
+    gasCmap = None, deltaAngle = 2., text=True,
+    partplot = [True, True, True, True, False]):
     '''
     Make an image at some given position. Similar to above, except can be
     rotating.
@@ -228,7 +234,8 @@ def imageAtPosition(fileInfo, style=ImageStyles.xsmall, centre = [0.,0.,0.],
 
 
 def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
-    snapList = [28], objectList = [1172], text = True):
+    snapList = [28], objectList = [1172], text = True,
+    saveDir = "~/test_images"):
     '''
     Makes a set of images for the standard object numbers (0-9999). Creates
     in a directory /Webpage/<Object Number, Centre co-ords, Gallery>
@@ -237,7 +244,6 @@ def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
 
     #set up directories
     dir = "."
-    saveDir = "./test_images"
 
     #create and save images
 
@@ -254,10 +260,12 @@ def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
 
                 #now we get the file info for each object
                 fileInfo = eagle.FileInfo(dir, snap, "",saveDir + fileDir,
-                rotating = rotating, text = text)
+                rotating = rotating)
 
                 #and finally complete the image
-                self.fofGallery(fileInfo, size, first_fof = object, nfof=1)
+                ensureDir(saveDir + fileDir)
+
+                fofGallery(fileInfo, size, first_fof = object, nfof=1)
 
     return
 
@@ -288,14 +296,16 @@ def makeImagesAtPosition(rotating = False, text = True, sizeList =
                 size['name']))
 
                 if rotating:
-                    file_dir = file_dir + "/rotation"
+                    fileDir = fileDir + "/rotation"
 
+
+                ensureDir(saveDir + fileDir)
 
                 fileInfo = eagle.FileInfo(dir, snap, "", saveDir + fileDir,
                 rotating = rotating, text = text)
 
                 #create the image
-                self.imageAtPosition(fileInfo, size, centre = centre,
+                imageAtPosition(fileInfo, size, centre = centre,
                 text = text)
 
     return
@@ -303,7 +313,7 @@ def makeImagesAtPosition(rotating = False, text = True, sizeList =
 
 def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
     snapList = [28], nfof = 50, deleteFiles = True, first_fof = 0,
-    fof_step = 1, subsample = 1):
+    fof_step = 1, subsample = 1, saveDir = "~/test_images"):
     '''
     Makes a 'gallery' of images from the list of sizes of the first nfof
     objects. So normally this would start at object 0 and make images
@@ -312,18 +322,20 @@ def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
 
     #directory setup
     dir = "."
-    saveDir = "./test_images"
 
 
     for size in sizeList:
         for snap in snapList:
             fileDir = ("/Webpage/Gallery/Snapshot%2.0f/%s"%(snap,
             size['name']))
+
+            ensureDir(saveDir + fileDir)
+
             fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir,
             rotating=False)
 
             #create images
-            self.fofGallery(fileInfo, size, nfof, first_fof,
+            fofGallery(fileInfo, size, nfof, first_fof,
             fof_step = fof_step)
 
             #cleanup
