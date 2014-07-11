@@ -228,6 +228,8 @@ print "Looks okay to me! Calling the makeObjectImages function!"
 
 #now we will do some cool parellisation stuff.
 if parallelise = True:
+    index = 0
+    join = True
     if len(snapList)*len(objectList)*len(sizeList) < 25:
         print "Fully paralell process!"
 
@@ -241,7 +243,8 @@ if parallelise = True:
                     p = Process(target = rgb.makeObjectImages, args = (rotating,
                     [size], [snap], [object], text, saveDir))
                     jobs.append(p)
-                    p.start()
+                    jobs[index].start()
+                    index +=1
 
 
     elif len(snapList)*len(objectList) < 25:
@@ -256,7 +259,8 @@ if parallelise = True:
                 p = Process(target = rgb.makeObjectImages, args = (rotating,
                 sizeList, [snap], [object], text, saveDir))
                 jobs.append(p)
-                p.start()
+                jobs[index].start()
+                index +=1
 
 
     elif len(snapList)*len(sizeList) < 25:
@@ -271,7 +275,8 @@ if parallelise = True:
                 p = Process(target = rgb.makeObjectImages, args = (rotating,
                 [size], [snap], objectList, text, saveDir))
                 jobs.append(p)
-                p.start()
+                jobs[index].start()
+                index +=1
 
 
     elif len(objectList)*len(sizeList) < 25:
@@ -286,15 +291,20 @@ if parallelise = True:
                 p = Process(target = rgb.makeObjectImages, args = (rotating,
                 [size], [snap], objectList, text, saveDir))
                 jobs.append(p)
-                p.start()
+                jobs[index].start()
+                index +=1
 
     else:
-        print "Too many jobs at once! Please use queueing! Performing jobs\
-        in series"
+        print "Too many jobs at once! Please use queueing!
+        join = False
+
+
+    if join:    
+        for i in range(len(jobs)):
+            #make sure they don't get cut off!
+            jobs[i].join()
 
 
 
-
-
-
-rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir)
+else:
+    rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir)

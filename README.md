@@ -50,4 +50,8 @@ default.
 At the moment all it does is find the object numbers that are going to be
 imaged and placed on top.
 
-Last updated : 08/07/2014
+### friendlyWrapper.py ###
+
+Allows command line input for the makeObjectImages function.
+
+Last updated : 09/07/2014
