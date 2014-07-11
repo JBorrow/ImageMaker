@@ -28,7 +28,7 @@ snapList = [28]
 objectList = [1172]
 sizeList = [ImageStyles.xsmall]
 text = True
-saveDir = "~/test_images"
+saveDir = "/cosma5/data/dp004/dc-gues3/test_images"
 parallelise = True
 
 #search through to find some args
@@ -299,7 +299,7 @@ if parallelise = True:
         join = False
 
 
-    if join:    
+    if join:
         for i in range(len(jobs)):
             #make sure they don't get cut off!
             jobs[i].join()

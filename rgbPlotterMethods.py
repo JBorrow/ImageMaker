@@ -235,7 +235,7 @@ def imageAtPosition(fileInfo, style=ImageStyles.xsmall, centre = [0.,0.,0.],
 
 def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
     snapList = [28], objectList = [1172], text = True,
-    saveDir = "~/test_images"):
+    saveDir = "/cosma5/data/dp004/dc-gues3/test_images"):
     '''
     Makes a set of images for the standard object numbers (0-9999). Creates
     in a directory /Webpage/<Object Number, Centre co-ords, Gallery>
@@ -272,7 +272,7 @@ def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
 
 def makeImagesAtPosition(rotating = False, text = True, sizeList =
     [ImageStyles.xsmall], snapList = [28], centreList =
-    [[0.,0.,0.]]):
+    [[0.,0.,0.]], saveDir = "/cosma5/data/dp004/dc-gues3/test_images"):
     '''
     Works the same as above however takes an argument of a list of lists
     unlike than the original. Also accepts a single list rather than
@@ -285,7 +285,6 @@ def makeImagesAtPosition(rotating = False, text = True, sizeList =
 
     #directory setup
     dir = "."
-    saveDir = "./test_images"
 
     #actual work
     for size in sizeList:
@@ -313,7 +312,8 @@ def makeImagesAtPosition(rotating = False, text = True, sizeList =
 
 def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
     snapList = [28], nfof = 50, deleteFiles = True, first_fof = 0,
-    fof_step = 1, subsample = 1, saveDir = "~/test_images"):
+    fof_step = 1, subsample = 1,
+    saveDir = "/cosma5/data/dp004/dc-gues3/test_images"):
     '''
     Makes a 'gallery' of images from the list of sizes of the first nfof
     objects. So normally this would start at object 0 and make images
