@@ -227,7 +227,7 @@ for number in objectList:
 print "Looks okay to me! Calling the makeObjectImages function!"
 
 #now we will do some cool parellisation stuff.
-if parallelise = True:
+if parallelise == True:
     index = 0
     join = True
     if len(snapList)*len(objectList)*len(sizeList) < 25:
@@ -295,7 +295,7 @@ if parallelise = True:
                 index +=1
 
     else:
-        print "Too many jobs at once! Please use queueing!
+        print "Too many jobs at once! Please use queueing!"
         join = False
 
 
