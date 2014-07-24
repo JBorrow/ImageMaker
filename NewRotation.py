@@ -122,7 +122,7 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
     multiprocessing module
     '''
 
-    for angle in arange(start, stop, step):
+    for angle in range(start, stop, step):
         baseData.imageParams.angle = angle
 
         baseData.plot_image(perspective=baseData.imageParams.perspective,
