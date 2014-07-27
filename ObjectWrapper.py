@@ -20,6 +20,7 @@ from ImageStyles import *
 import time
 from multiprocessing import Process
 import rgbPlotterMethods as rgb
+import ParallelRotation as para
 
 args = sys.argv
 
