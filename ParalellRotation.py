@@ -11,6 +11,7 @@ def makeRotation(sizeList, snapList, objectList, text=True, saveDir = "/cosma5/d
     if nFrames % nCores == 0:
         nProcess = nFrames/nCores
         #set the save directory
+        print "setting directory"
         fileDir = ("Webpage/Centre%2.2f_%2.2f_%2.2f/Snapshot\
                 %2.0f/%s/rotation"%(centre[0], centre[1], centre[2], snap,
                 size['name']))
@@ -27,4 +28,5 @@ def makeRotation(sizeList, snapList, objectList, text=True, saveDir = "/cosma5/d
 
 
 if __name__ == "__main__":
-    makeRotation([ImageStyles.xsmall], [28], [1827], )
+    print "you made it here at least"
+    makeRotation([ImageStyles.xsmall], [28], [1827])
