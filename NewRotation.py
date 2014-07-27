@@ -103,17 +103,21 @@ def paramMaker(style = ImageStyles.xsmall, gasCmap = None,
 
 
 
-def imageMaker(baseData, particleData, imageParams, nFrames = 360, nCores = 10):
+def imageMaker(baseData, particleData, imageParams, nFrames = 360, nCores = 4):
     '''
     Makes the frames.
     '''
 
-    step = float(360*nCores)/float(nFrames)
+    step = 360*nCores/nFrames
 
+    jobs = []
     for core in range(nCores):
         p = Process(target=angleIterator, args = (core, 360, step, baseData))
-        p.start()
+        jobs.append(p)
+        jobs[core].start()
 
+    for job in range(len(jobs)):
+        jobs[job].join()
 
 
 def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
@@ -133,7 +137,7 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
 
 
 def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
-    objectList = [0], text = True,
+    objectList = [0], text = True, nFrames = 360, nCores = 4,
     saveDir = "/cosma5/data/dp004/dc-gues3/test_images"):
     '''
     The actual function. It will create the images in the given directory, and
@@ -148,7 +152,7 @@ def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
     for size in sizeList:
         for snap in snapList:
             for object in objectList:
-                Dir = (saveDir + "/Webpage/Object%.0f/Snapshot%2.0f/%s/rotating"
+                Dir = (saveDir + "/Webpage/Object%.0f/Snapshot%2.0f/%s/rotation"
                 %(object, snap, size['name']))
 
                 ensureDir(Dir)
@@ -171,4 +175,4 @@ def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
 
                 #now we need to call the function that actually makes the images
 
-                imageMaker(baseData, particleData, imageParams)
+                imageMaker(baseData, particleData, imageParams, nFrames, nCores)

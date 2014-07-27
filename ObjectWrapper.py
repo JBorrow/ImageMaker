@@ -232,4 +232,8 @@ for number in objectList:
 
 print "Looks okay to me! Calling the makeObjectImages function!"
 
-rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir)
+if rotating:
+    para.makeRotation(sizeList, snapList, objectList, text, saveDir, 360, 4)
+
+else:
+    rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir)
