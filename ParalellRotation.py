@@ -6,7 +6,7 @@ from multiprocessing import Process
 import rgbPlotterMethods as rgb
 import NewRotation as NR
 
-def makeRotation(sizeList, snapList, objectList, text, saveDir, nFrames, nCores):
+def makeRotation(sizeList, snapList, objectList, text=True, saveDir = "/cosma5/data/dp004/dc-gues3/test_images", nFrames=360, nCores=4):
     jobsList = []
     if nFrames % nCores == 0:
         nProcess = nFrames/nCores
@@ -19,8 +19,12 @@ def makeRotation(sizeList, snapList, objectList, text, saveDir, nFrames, nCores)
 
         NR.rotationMaker(sizeList, snapList,
         objectList, text, nFrames, nCores,
-        saveDir = "/cosma5/data/dp004/dc-gues3/test_images")
+        saveDir)
 
     else:
         print "nFrames and nCores not compatible. Sorry bro. Exiting..."
         exit(-1)
+
+
+if __name__ == "__main__":
+    makeRotation([ImageStyles.xsmall], [28], [1827], )
