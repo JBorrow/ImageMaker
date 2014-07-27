@@ -14,7 +14,7 @@ Institute for Computational Cosmology
 
 from ImageStyles import *
 
-#import plot_eagle_image as eagle
+import plot_eagle_image as eagle
 import sys
 import numpy as N
 import time
