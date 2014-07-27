@@ -352,3 +352,6 @@ def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
 
 
     return
+
+if __name__ == "__main__":
+    makeObjectImages(objectList=[1821])
