@@ -24,9 +24,6 @@ import fnmatch
 
 #make sure you're eagle
 
-os.system("newgrp dp004-eagle")
-os.system("umask 002")
-
 
 def ensureDir(directory):
     d = os.path.dirname(directory)
