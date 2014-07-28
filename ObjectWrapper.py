@@ -2,13 +2,13 @@
 This acts as a command-line wrapper that makes images and rotations using the
 rgbPlotterMethods module.
 
--r <t/f>                       rotating?
--sn "<snap1> <snap2> <...>"    snaps?
--sl "<size1> <size2> <...>"    sizes?
--ol "<obj1> <obj2> <...>"      objects?
--t <t/f>                       text on image?
--sd "<Save directory>"         save directory?
--p <t/f>                       parallelise?
+-r <t/f>                            rotating?
+-sn "<snap1> <snap2> <...>"         snaps?
+-sl "<size1> <size2> <...>"         sizes?
+-ol "<obj1> <obj2> <...>"           objects?
+-t <t/f>                            text on image?
+-sd "<Save directory>"              save directory?
+-p "Gas, DM, Stars, Hi, BH" <t/f>   partplot?
 
 It checks if less than 25 cores are going to be used and if greater asks the
 user to use the queue system.
@@ -187,14 +187,15 @@ if '-p' in args:
 
     tf = args[index + 1]
 
-    if tf == 't':
-        parallelise = True
+    plot = tf.split()
+    partplot = []
 
-    elif tf == 'f':
-        parallelise = False
+    for i in range(5)
+        if plot[i] == 't':
+            partplot.append[True]
+        else:
+            partplot.append[False]
 
-    else:
-        parallelise = True
 
 
 sizeListPrinter = []
@@ -234,7 +235,7 @@ for number in objectList:
 print "Looks okay to me! Calling the makeObjectImages function!"
 
 if rotating:
-    para.makeRotation(sizeList, snapList, objectList, text, saveDir, 360, 4)
+    para.makeRotation(sizeList, snapList, objectList, text, saveDir, 360, 4, partplot)
 
 else:
     rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir)

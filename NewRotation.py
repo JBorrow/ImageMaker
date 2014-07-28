@@ -143,7 +143,8 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
 
 def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
     objectList = [0], text = True, nFrames = 360, nCores = 4,
-    saveDir = "/cosma5/data/dp004/dc-gues3/test_images"):
+    saveDir = "/cosma5/data/dp004/dc-gues3/test_images",
+    partplot = [True, True, True, True, True]):
     '''
     The actual function. It will create the images in the given directory, and
     then will convert them into a movie file with 24fps and the same resolution
@@ -180,4 +181,5 @@ def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
 
                 #now we need to call the function that actually makes the images
 
-                imageMaker(baseData, particleData, imageParams, nFrames, nCores)
+                imageMaker(baseData, particleData, imageParams, nFrames, nCores,
+                          partplot)
