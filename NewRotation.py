@@ -18,10 +18,7 @@ import copy
 import gc
 
 def ensureDir(directory):
-    d = os.path.dirname(directory)
-
-    if not os.path.exists(d):
-        os.system("mkdir -p -v " + directory + "/rotation")
+    os.system("mkdir -p -v " + directory)
 
 def paramMaker(style = ImageStyles.xsmall, gasCmap = None,
     partplot = [True, True, True, True, True]):
