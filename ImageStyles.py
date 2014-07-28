@@ -107,7 +107,7 @@ class ImageStyles:
 	'T_limits' : [4.5,5.5,10.]
 	}
 
-    joshrot = {
+	joshrot = {
 	'name' : 'medium',
 	'width' : 2.0,
 	'scale' : [2.0, 1000.],
@@ -115,7 +115,7 @@ class ImageStyles:
 	'dark_scale_factor' : 50000.,
 	'gas_cmap' : None,
 	'T_limits' : [4.5,5.5,10.]
-    "pixels" : [1920,1920]
+	"pixels" : [1920,1920]
 	}
 
 	large = {
@@ -138,7 +138,7 @@ class ImageStyles:
 	'T_limits' : [4.5,5.5,10.],
 	}
 
-    xlarge_hr = {
+	xlarge_hr = {
 	'name' : 'xlarge',
 	'width' : 10.0,
 	'scale' : [1.0, 1000.],
