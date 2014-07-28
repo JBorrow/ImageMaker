@@ -190,7 +190,7 @@ if '-p' in args:
     plot = tf.split()
     partplot = []
 
-    for i in range(5)
+    for i in range(5):
         if plot[i] == 't':
             partplot.append[True]
         else:
