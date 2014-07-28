@@ -238,7 +238,8 @@ def imageAtPosition(fileInfo, style=ImageStyles.xsmall, centre = [0.,0.,0.],
 
 def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
     snapList = [28], objectList = [1172], text = True,
-    saveDir = "/cosma5/data/dp004/dc-gues3/test_images"):
+    saveDir = "/cosma5/data/dp004/dc-gues3/test_images",
+    partplot = [True, True, True, True, True]):
     '''
     Makes a set of images for the standard object numbers (0-9999). Creates
     in a directory /Webpage/<Object Number, Centre co-ords, Gallery>
@@ -268,7 +269,8 @@ def makeObjectImages(rotating=False, sizeList = [ImageStyles.xsmall],
                 #and finally complete the image
                 ensureDir(saveDir + fileDir)
 
-                fofGallery(fileInfo, size, first_fof = object, nfof=1)
+                fofGallery(fileInfo, size, first_fof = object, nfof=1,
+                           partplot=partplot)
 
     return
 

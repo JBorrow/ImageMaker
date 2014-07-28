@@ -238,4 +238,4 @@ if rotating:
     para.makeRotation(sizeList, snapList, objectList, text, saveDir, 360, 4, partplot)
 
 else:
-    rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir)
+    rgb.makeObjectImages(rotating, sizeList, snapList, objectList, text, saveDir, partplot=partplot)
