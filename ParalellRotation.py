@@ -15,8 +15,6 @@ def makeRotation(sizeList, snapList, objectList, text=True, saveDir = "/cosma5/d
         fileDir = ("Webpage/Object%4.4i/Snapshot\
                 %2.0f/%s/rotation"%(objectList[0],snapList[0],
                 sizeList[0]['name']))
-        #make sure it exists, otherwise we die
-        rgb.ensureDir(saveDir + fileDir)
 
         NR.rotationMaker(sizeList, snapList,
         objectList, text, nFrames, nCores,
