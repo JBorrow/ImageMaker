@@ -29,7 +29,7 @@ def ensureDir(directory):
     d = os.path.dirname(directory)
 
     if not os.path.exists(d):
-        os.system("mkdir -p " + str(d))
+        os.makedirs(d)
 
 def fofGallery(fileInfo, style=ImageStyles.xsmall, nfof=1, first_fof=1,
     fof_step=1, gasCmap=None, partplot = [True, True, True, True, False]):
