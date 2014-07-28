@@ -114,7 +114,7 @@ class ImageStyles:
     'star_scale_factor' : 2.,
     'dark_scale_factor' : 50000.,
     'gas_cmap' : None,
-    'T_limits' : [4.5,5.5,10.]
+    'T_limits' : [4.5,5.5,10.],
     "pixels" : [1920,1920]
     }
 
