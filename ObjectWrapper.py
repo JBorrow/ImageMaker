@@ -209,7 +209,7 @@ print "objectList: ", objectList
 print "sizeList: ", sizeListPrinter
 print "Text: ", text
 print "saveDir: ", saveDir
-print "Parallelise: ", parallelise
+print "partplot: ", partplot
 
 #now we'll perform some checks!
 
