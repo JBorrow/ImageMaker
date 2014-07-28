@@ -192,9 +192,9 @@ if '-p' in args:
 
     for i in range(5):
         if plot[i] == 't':
-            partplot.append[True]
+            partplot.append(True)
         else:
-            partplot.append[False]
+            partplot.append(False)
 
 
 
