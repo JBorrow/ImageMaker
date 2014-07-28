@@ -232,7 +232,7 @@ for number in objectList:
         exit(-1)
 
 
-print "Looks okay to me! Calling the makeObjectImages function!"
+print "Looks okay to me! Calling the makeObjectImages OR makeRotation function!"
 
 if rotating:
     para.makeRotation(sizeList, snapList, objectList, text, saveDir, 360, 4, partplot)
