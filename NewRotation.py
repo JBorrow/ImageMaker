@@ -167,7 +167,7 @@ def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
 
                 fileInfo = eagle.FileInfo(".", snap, "", Dir, rotating = True)
 
-                imageParams, plotParams = paramMaker(size)
+                imageParams, plotParams = paramMaker(size, partplot=partplot)
 
                 baseData = eagle.eagle_image_data(fileInfo, imageParams,
                                                     plotParams)
@@ -181,5 +181,4 @@ def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
 
                 #now we need to call the function that actually makes the images
 
-                imageMaker(baseData, particleData, imageParams, nFrames, nCores,
-                          partplot)
+                imageMaker(baseData, particleData, imageParams, nFrames, nCores)
