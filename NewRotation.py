@@ -15,6 +15,7 @@ from ImageStyles import *
 import os
 from multiprocessing import Process
 import copy
+import gc
 
 def ensureDir(directory):
     d = os.path.dirname(directory)
