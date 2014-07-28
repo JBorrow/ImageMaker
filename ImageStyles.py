@@ -138,6 +138,17 @@ class ImageStyles:
 	'T_limits' : [4.5,5.5,10.],
 	}
 
+    xlarge_hr = {
+	'name' : 'xlarge',
+	'width' : 10.0,
+	'scale' : [1.0, 1000.],
+	'star_scale_factor' : 1.,
+	'dark_scale_factor' : 50000.,
+	'gas_cmap' : None,
+	'T_limits' : [4.5,5.5,10.],
+    'pixels' : [1920,1920]
+	}
+
 	xxlarge = {
 	'name' : 'xxlarge',
 	'width' : N.array([20., 20., 10.]),
