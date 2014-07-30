@@ -2,13 +2,15 @@
 This acts as a command-line wrapper that makes movies using the
 MovieMaker.py module.
 
--ci "<x> <y> <z>"              initial centre?
--cf "<x> <y> <z>"			   final centre?
+-ci "<x> <y> <z>"              		initial centre?
+-cf "<x> <y> <z>"			   		final centre?
 -z "<initial redshift>"
--s "<sizename>"   			   size?
--t <t/f>                       text on image?
--sd "<Save directory>"         save directory?
--da "<value>"				   delta angle for rotating
+-s "<sizename>"   			   		size?
+-t <t/f>                       		text on image?
+-sd "<Save directory>"         		save directory?
+-da "<value>"				   		delta angle for rotating
+-p "Gas, DM, Stars, Hi, BH" <t/f>   partplot?
+-tag								tag your save as a string. REQUIRED.
 '''
 
 import sys
@@ -26,6 +28,7 @@ z = 10
 sizeList = [ImageStyles.xsmall]
 text = True
 saveDir = "/cosma5/data/dp004/dc-gues3/test_images"
+tag = False
 
 #search through to find some args
 
@@ -154,6 +157,25 @@ if "-da" in args:
 	index = args.index('-da')
 	da = float(args[index+1])
 
+if '-p' in args:
+    index = args.index('-p')
+
+    tf = args[index + 1]
+
+    plot = tf.split()
+    partplot = []
+
+    for i in range(5):
+        if plot[i] == 't':
+            partplot.append(True)
+        else:
+            partplot.append(False)
+
+if '-tag' in args:
+	index = args.index('-tag')
+
+	tag = args[index+1]
+
 
 sizeListPrinter = []
 
@@ -168,8 +190,13 @@ print "Text: ", text
 print "saveDir: ", saveDir
 print "Delta angle: ", da
 
+if not tag:
+	print "No tag specified. Cannot continue"
+	exit(-1)
+
 time.wait(10)
 
 print "Calling the makeSingleMovie function"
 
-MM.makeSingleMovie(initial, final, z, sizeList[0], text, saveDir, da)
+MM.makeSingleMovie(initial, final, z, sizeList[0], text, saveDir, da,
+				  tag, partplot)
