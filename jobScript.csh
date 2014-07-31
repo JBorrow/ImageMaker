@@ -12,10 +12,10 @@
 #BSUB -q shm5
 #BSUB -M 150000  # maximum memory required.  For 25 Mpc
 #BSUB -J image_at_position
-#BSUB -eo ~/LogFiles/ObjectWrapper.e%J-%I
-#BSUB -oo ~/LogFiles/ObjectWrapper.o%J-%I
+#BSUB -eo /cosma/home/do004/dc-gues3/LogFiles/ObjectWrapper.e%J-%I
+#BSUB -oo /cosma/home/do004/dc-gues3/LogFiles/ObjectWrapper.o%J-%I
 #BSUB -m cosma-f
 
 module load python
 
-python ~/ImageMaker/ObjectWrapper.py -r t -sl "xlarge_hr" -p "t t t t t" -ol "7"
+python ~/ImageMaker/MovieWrapper.py -ci "10.1511345 80.2705 53.930096" -cf "75.27715 30.656631 39.509205" -z "1" -p "t t t t t" -tag "MergingGalaxy"
