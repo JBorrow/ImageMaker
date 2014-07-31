@@ -5,6 +5,7 @@ rather than doing any interpolation.
 '''
 
 import numpy as N
+import plot_eagle_image as eagle
 
 def makeSingleMovie(initial, final, z, size, text, saveDir, da, tag, partplot):
 	dxda = (final - initial)/( (1./(1.+z)) - 1.)    # subtract to get position at a=0
