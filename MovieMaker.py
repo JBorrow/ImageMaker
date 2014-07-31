@@ -7,7 +7,7 @@ def makeSingleMovie(initial, final, z, size, text, saveDir, da, tag, partplot):
 	dxda = (final - initial)/( (1./(1.+z)) - 1.)    # subtract to get position at a=0
 
 	dir = "./"
-	width = size['with']
+	width = size['width']
 	scale = N.array(size['scale'])
 	star_scale_factor = size['star_scale_factor']
 	dark_scale_factor = size['dark_scale_factor']
