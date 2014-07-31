@@ -25,17 +25,17 @@ else:
     path = "./"
 
 for type in types:
-	moviename = path + type + movieaddon
-	command = "ffmpeg -i %s -t 1 -ss 26 -s 200x200 -f image2 %s_temp.png" % (moviename, path + type)
+    moviename = path + type + movieaddon
+    command = "ffmpeg -i %s -t 1 -ss 26 -s 200x200 -f image2 %s_temp.png" % (moviename, path + type)
 
-	subprocess.call(command.split())
-	time.sleep(2)
-	converter = ['convert', '%s_temp.png' % (type),'-font','Helvetica','-pointsize','40','-gravity','center',
-				 '-draw','fill white text 0,0 %s' % (type.upper()),'%s.png' % (type)]
+    subprocess.call(command.split())
+    time.sleep(2)
+    converter = ['convert', '%s_temp.png' % (type),'-font','Helvetica','-pointsize','40','-gravity','center',
+             '-draw','fill white text 0,0 %s' % (type.upper()),'%s.png' % (type)]
 
-	print converter
-	subprocess.call(converter)
-	time.sleep(2)
+    print converter
+    subprocess.call(converter)
+    time.sleep(2)
 
 #cleanup
 os.system('rm ' + path + '*temp.png')

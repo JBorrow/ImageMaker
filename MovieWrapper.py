@@ -65,7 +65,7 @@ if "-z" in args:
 #SIZE LIST?
 
 if '-s' in args:
-    index = args.index('-sl')
+    index = args.index('-s')
     sl = args[index + 1]
 
     #we get this as a string, and we need to turn it back to a list
