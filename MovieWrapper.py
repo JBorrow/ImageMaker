@@ -39,6 +39,7 @@ if "-ci" in args:
 	ci = args[index+1]
 
 	List = ci.split()
+	map(float, List)
 
 	initial = N.array(List)
 
@@ -47,6 +48,7 @@ if "-cf" in args:
 	cf = args[index+1]
 
 	List = cf.split()
+	map(float, List)
 
 	final = N.array(List)
 
