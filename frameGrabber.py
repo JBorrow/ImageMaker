@@ -20,10 +20,11 @@ movieaddon = "_movie.avi"
 if "-path" in args:
     path = args[args.index("-path")]
 else:
-    path = "."
+    path = "./"
 
 for type in types:
     moviename = path + type + movieaddon
     command = "ffmpeg -i %s -r 1 -s 200x200 -f image2 %s.png" % (moviename, path + type)
-
-    subprocess.call(command.split())
+    commands = command.split()
+    print commands
+    subprocess.call(commands)
