@@ -3,6 +3,9 @@ This file contains the python script that creates movies that evolve
 over time. It is a simple script and uses the snipshots as frames,
 rather than doing any interpolation.
 '''
+
+import numpy as N
+
 def makeSingleMovie(initial, final, z, size, text, saveDir, da, tag, partplot):
 	dxda = (final - initial)/( (1./(1.+z)) - 1.)    # subtract to get position at a=0
 
