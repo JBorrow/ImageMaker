@@ -3,9 +3,7 @@ This file contains the python script that creates movies that evolve
 over time. It is a simple script and uses the snipshots as frames,
 rather than doing any interpolation.
 '''
-def makeSingleMovie(initial, final, z, size, text, saveDir, da,
-					tag, partplot):
-
+def makeSingleMovie(initial, final, z, size, text, saveDir, da, tag, partplot):
 	dxda = (final - initial)/( (1./(1.+z)) - 1.)    # subtract to get position at a=0
 
 	dir = "./"
@@ -16,17 +14,17 @@ def makeSingleMovie(initial, final, z, size, text, saveDir, da,
 	T_limits = N.array(size['T_limits'])
 
 	if 'pixels' in size.keys() :
-	    xpixels, ypixels = size['pixels']
+		xpixels, ypixels = size['pixels']
 	else:
-	    xpixels, ypixels = 1024, 1024
+		xpixels, ypixels = 1024, 1024
 
 	if 'use_logh' in size.keys() :
-	    use_logh = size['use_logh']
+		use_logh = size['use_logh']
 	else:
-	    use_logh = True
+		use_logh = True
 
 	if 'gas_cmap' in size.keys() :
-	    gas_cmap = size['gas_cmap']
+		gas_cmap = size['gas_cmap']
 
 	imageParams = eagle.ImageParams(width, scale, zoom=1., angle=0,
 	partplot=partplot, star_scale_factor=star_scale_factor,
