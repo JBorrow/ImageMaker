@@ -22,8 +22,8 @@ import MovieMaker as MM
 args = sys.argv
 
 da = 0
-ci = N.array(0,0,0)
-cf = N.array(0,0,0)
+ci = N.array([0,0,0])
+cf = N.array([0,0,0])
 z = 10
 sizeList = [ImageStyles.xsmall]
 text = True
@@ -39,16 +39,22 @@ if "-ci" in args:
 	ci = args[index+1]
 
 	List = ci.split()
+	floatlist = []
+	for item in List:
+		floatlist.append(float(item))
 
-	initial = N.array(List)
+	initial = N.array(floatlist)
 
 if "-cf" in args:
 	index = args.index("-cf")
 	cf = args[index+1]
 
 	List = cf.split()
+	floatlist = []
+	for item in List:
+		floatlist.append(float(item))
 
-	final = N.array(List)
+	final = N.array(floatlist)
 
 #REDSHIFT?
 
@@ -194,7 +200,7 @@ if not tag:
 	print "No tag specified. Cannot continue"
 	exit(-1)
 
-time.wait(10)
+time.sleep(10)
 
 print "Calling the makeSingleMovie function"
 
