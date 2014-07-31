@@ -108,7 +108,7 @@ class ImageStyles:
     }
 
     joshrot = {
-    'name' : 'medium',
+    'name' : 'joshrot',
     'width' : 2.0,
     'scale' : [2.0, 1000.],
     'star_scale_factor' : 2.,
@@ -139,7 +139,7 @@ class ImageStyles:
     }
 
     xlarge_hr = {
-    'name' : 'xlarge',
+    'name' : 'xlarge_hr',
     'width' : 10.0,
     'scale' : [1.0, 1000.],
     'star_scale_factor' : 1.,
