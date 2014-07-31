@@ -39,18 +39,22 @@ if "-ci" in args:
 	ci = args[index+1]
 
 	List = ci.split()
-	map(float, List)
+	floatlist = []
+	for item in List:
+		floatlist.append(float(item))
 
-	initial = N.array(List)
+	initial = N.array(floatlist)
 
 if "-cf" in args:
 	index = args.index("-cf")
 	cf = args[index+1]
 
 	List = cf.split()
-	map(float, List)
+	floatlist = []
+	for item in List:
+		floatlist.append(float(item))
 
-	final = N.array(List)
+	final = N.array(floatlist)
 
 #REDSHIFT?
 
