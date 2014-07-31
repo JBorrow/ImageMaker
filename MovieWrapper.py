@@ -22,8 +22,8 @@ import MovieMaker as MM
 args = sys.argv
 
 da = 0
-ci = N.array(0,0,0)
-cf = N.array(0,0,0)
+ci = N.array([0,0,0])
+cf = N.array([0,0,0])
 z = 10
 sizeList = [ImageStyles.xsmall]
 text = True
