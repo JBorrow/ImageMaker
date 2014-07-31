@@ -26,7 +26,7 @@ else:
 
 for type in types:
 	moviename = path + type + movieaddon
-	command = "ffmpeg -i %s -t 1 -ss 33 -s 200x200 -f image2 %s_temp.png" % (moviename, path + type)
+	command = "ffmpeg -i %s -t 1 -ss 26 -s 200x200 -f image2 %s_temp.png" % (moviename, path + type)
 
 	subprocess.call(command.split())
 	time.sleep(2)
