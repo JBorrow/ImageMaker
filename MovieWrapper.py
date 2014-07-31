@@ -194,7 +194,7 @@ if not tag:
 	print "No tag specified. Cannot continue"
 	exit(-1)
 
-time.wait(10)
+time.sleep(10)
 
 print "Calling the makeSingleMovie function"
 
