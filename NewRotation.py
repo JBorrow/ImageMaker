@@ -123,17 +123,13 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
     This iterates through angles and makes images so we can use the
     multiprocessing module
     '''
-    bD = copy.deepcopy(baseData)
 
     for angle in range(start, stop, step):
-        baseData.imageParams.angle = angle
+        baseData.imageParams.angle = step
 
         baseData.plot_image(perspective=baseData.imageParams.perspective,
         camera_z_distance=baseData.imageParams.camera_z_distance,
         opacity=baseData.imageParams.opacity)
-        baseData = None
-        gc.collect()
-        baseData = copy.deepcopy(bD)
 
 
 
