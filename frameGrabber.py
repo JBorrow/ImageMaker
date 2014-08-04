@@ -34,7 +34,7 @@ for type in types:
              '-draw','fill white text 0,0 %s' % (type.upper()),'%s.png' % (type)]
 
     print converter
-    subprocess.call(converter)
+    subprocess.call(converter,shell=True)
     time.sleep(2)
 
 #cleanup
