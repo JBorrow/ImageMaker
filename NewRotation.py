@@ -125,7 +125,7 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
     '''
 
     for angle in range(start, stop, step):
-        baseData.imageParams.angle = step
+        baseData.imageParams.delta_angle = step
 
         baseData.plot_image(perspective=baseData.imageParams.perspective,
         camera_z_distance=baseData.imageParams.camera_z_distance,
