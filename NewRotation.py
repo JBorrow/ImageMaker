@@ -10,7 +10,7 @@ Institute for Computational Cosmology
 14/07/2014
 '''
 
-import new_plot_eagle_image as eagle
+import plot_eagle_image as eagle
 from ImageStyles import *
 import os
 from multiprocessing import Process
@@ -124,12 +124,18 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
     multiprocessing module
     '''
 
+    bD = copy.deepcopy(baseData)
+
     for angle in range(start, stop, step):
-        baseData.imageParams.delta_angle = step
+        baseData.imageParams.delta_angle = angle
 
         baseData.plot_image(perspective=baseData.imageParams.perspective,
         camera_z_distance=baseData.imageParams.camera_z_distance,
         opacity=baseData.imageParams.opacity)
+
+        baseData = None
+        gc.collect()
+        baseData = copy.deepcopy(bD)
 
 
 
