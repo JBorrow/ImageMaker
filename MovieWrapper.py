@@ -160,8 +160,8 @@ if '-sd' in args:
     saveDir = args[index + 1]
 
 if "-da" in args:
-	index = args.index('-da')
-	da = float(args[index+1])
+    index = args.index('-da')
+    da = float(args[index+1])
 
 if '-p' in args:
     index = args.index('-p')
@@ -178,9 +178,9 @@ if '-p' in args:
             partplot.append(False)
 
 if '-tag' in args:
-	index = args.index('-tag')
+    index = args.index('-tag')
 
-	tag = args[index+1]
+    tag = args[index+1]
 
 
 sizeListPrinter = []
@@ -197,8 +197,8 @@ print "saveDir: ", saveDir
 print "Delta angle: ", da
 
 if not tag:
-	print "No tag specified. Cannot continue"
-	exit(-1)
+    print "No tag specified. Cannot continue"
+    exit(-1)
 
 time.sleep(10)
 
