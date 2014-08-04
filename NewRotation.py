@@ -10,7 +10,7 @@ Institute for Computational Cosmology
 14/07/2014
 '''
 
-import plot_eagle_image as eagle
+import new_plot_eagle_image as eagle
 from ImageStyles import *
 import os
 from multiprocessing import Process
