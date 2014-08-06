@@ -234,6 +234,18 @@ class ImageStyles:
     'pixels' : [2048,2048]
     }
 
+    supersize_super_hr = {
+    'name' : 'supersize_super_hr',
+    'width' : N.array([100., 100., 20.]),
+    'scale' : [0.2, 500.],
+    'star_scale_factor' : 1.,
+    'dark_scale_factor' : 50000.,
+    'gas_cmap' : None,
+    'T_limits' : [4.5,5.5,10.],
+    'pixels' : [12288,12288],
+    'text' : False,
+    }
+
     custom = {
     'name' : 'custom',
     'width' : 15.0,
