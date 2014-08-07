@@ -16,6 +16,11 @@ import os
 from multiprocessing import Process
 import copy
 import gc
+from guppy import hpy
+
+#initialise heapy
+
+h = hpy()
 
 def ensureDir(directory):
     os.system("mkdir -p -v " + directory)
@@ -135,7 +140,8 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
 
         baseData = None
         gc.collect()
-        print "GC could not clean up: ", gc.garbage
+        print "CURRENT MEMORY USEAGE LOOK AT ME"
+        print h.heap()
         baseData = copy.deepcopy(bD)
 
 
