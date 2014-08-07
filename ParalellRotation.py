@@ -21,7 +21,7 @@ def makeRotation(sizeList, snapList, objectList, text=True, saveDir = "/cosma5/d
         saveDir, partplot)
 
     else:
-        print "nFrames and nCores not compatible. Sorry bro. Exiting..."
+        print "nFrames and nCores not compatible. Sorry. Exiting..."
         exit(-1)
 
 
