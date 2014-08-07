@@ -135,9 +135,8 @@ def angleIterator(start = 0, stop = 360, step = 1, baseData = None):
 
         baseData = None
         gc.collect()
+        print "GC could not clean up: ", gc.garbage
         baseData = copy.deepcopy(bD)
-
-
 
 
 def rotationMaker(sizeList = [ImageStyles.xsmall], snapList = [28],
