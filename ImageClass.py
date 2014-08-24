@@ -2,7 +2,12 @@
 time working with Richard Bower and others at the ICC in Durham on the EAGLE
 project.
 
-It is used to create images, videos etc.
+It is used to create images, videos etc of the data from the EAGLE project.
+
+Joshua Borrow
+24/07/2014
+Institute For Computataional Cosmology, Durham University
+The EAGLE Project
 '''
 
 import os
@@ -12,7 +17,7 @@ from ImageStyles import *
 #richard's eagle class that contains the plotting code
 import plot_eagle_image as eagle
 
-class ImageObject:
+class Image:
   '''Use this class to initialise the object with properties, such as object
   number or position etc.'''
   
@@ -20,9 +25,12 @@ class ImageObject:
   
   self.objectNumber
   self.objectPosition
+  self.saveDir
+  self.fileDir
+  self.totalDir
   
   self.nFof
-  self.firstFof
+  self.centreFof
   self.fofStep
   
   self.imageStyle
@@ -40,22 +48,24 @@ class ImageObject:
   self.cameraZDistance
   self.perspective
   self.opacity
-  self.rotating
   self.partplot
+  self.snapNumber
   
   self.imageParams
   self.plotParams
+  self.fileInfo
+  self.baseData
+  self.particleData
   
-  def __init__(self, objectNumber = 0, objectPosition = N.array(0.,0.,0.),
-  imageStyle = ImageStyles.xsmall, rotating=False,
-  partplot = [True, True, True, True, True]):
-    self.objectNumber = objectNumber
-    self.objectPosition = objectPosition
-    self.imageStyle = imageStyle
-    self.rotating = rotating
+  def __init__(self, partplot = [True, True, True, True, True],
+  saveDir = "~/"):
+    '''We want to minise on the amount of things given to the init so that we
+    can have maximum flexibility. I think these two are fair as they are
+    unlikely to be changed during a script'''
     self.partplot = partplot
-    
-    self.imageStyleUnpack()
+    self.saveDir = saveDir
+
+    return True
     
   def imageStyleUnpack(self):
     '''Takes the given imagestyle and returns the values stored within its
@@ -120,7 +130,28 @@ class ImageObject:
     text = useText)
 
     return True
-      
+
+  def fileInfoPack(self, rotating = False):
+    '''Packages data in the class to the fileInfo object within the eagle class
+    so that we can give it the data we need to put the files where it should'''
+    self.totalDir = (self.SaveDir + "/Webpage/Object%0.f/Snapshot%2.0f/%s/"
+    % (self.objectNumber, self.snapNumber, self.size))
+
+    self.ensureDir(self.totalDir)
+
+    self.fileInfo = eagle.FileInfo(".", self.snapNumber, "", self.totalDir,
+    rotating = rotating)
+
+    return True
+    
+  def baseDataGrabber(self):
+    '''Grabs the data from eagle when using an object number'''
+    self.baseData = eagle.eagle_image_data(self.fileInfo, self.imageParams,
+    self.plotParams)
+    self.particleData = self.baseData.ReadParticleData(self.objectNumber)
+    
+    return True
+
   def ensureDir(self, directory):
     '''Checks if a directory exists. If it doesn't, it creates it'''
     d = os.path.dirname(directory)
@@ -130,4 +161,19 @@ class ImageObject:
       
     return True
   
+  def makeObjectImage(self, objectNumber = 0, snapNumber = 28,
+  imageStyle = ImageStyles.xsmall):
+    self.objectNumber = objectNumber
+    self.snapNumber = snapNumber
+    self.imageStyle = imageStyle
+    
+    self.imageStyleUnpack()
+    #package parameters ready for passing to eagle
+    self.paramPack()
+    self.fileInfoPack(rotating = False)
+    
+    self.baseDataGrabber()
 
+    self.baseData.plot_image()
+    
+    return True
