@@ -177,3 +177,13 @@ class Image:
     self.baseData.plot_image()
     
     return True
+
+  def makePosImage(self, position = N.array(0., 0., 0.), snapNumber = 28,
+  imageStyle = ImageStyles.xsmall):
+    
+    return True
+
+if __name__ == "__main__":
+  Image = Image()
+  Image.makeObjectImage(objectNumber = 1172)
+
