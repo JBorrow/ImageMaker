@@ -17,7 +17,7 @@ from ImageStyles import *
 #richard's eagle class that contains the plotting code
 import plot_eagle_image as eagle
 
-class Image:
+class Image(object):
   '''Use this class to initialise the object with properties, such as object
   number or position etc.'''
   
