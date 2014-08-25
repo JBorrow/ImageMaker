@@ -176,7 +176,7 @@ class Image(object):
     
     return True
 
-  def makePosImage(self, position = N.array(0., 0., 0.), snapNumber = 28,
+  def makePosImage(self, position = N.array([0., 0., 0.]), snapNumber = 28,
   imageStyle = ImageStyles.xsmall):
     
     return True
