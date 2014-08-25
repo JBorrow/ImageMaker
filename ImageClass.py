@@ -20,43 +20,7 @@ import plot_eagle_image as eagle
 class Image(object):
   '''Use this class to initialise the object with properties, such as object
   number or position etc.'''
-  
-  #initialise variables used so we don't forget about them!
-  
-  self.objectNumber
-  self.objectPosition
-  self.saveDir
-  self.fileDir
-  self.totalDir
-  
-  self.nFof
-  self.centreFof
-  self.fofStep
-  
-  self.imageStyle
-  self.width
-  self.scale
-  self.starScaleFactor
-  self.darkScaleFactor
-  self.tLimits
-  self.xPixels
-  self.yPixels
-  self.useLogh
-  self.useText
-  self.angle
-  self.gasCmap
-  self.cameraZDistance
-  self.perspective
-  self.opacity
-  self.partplot
-  self.snapNumber
-  
-  self.imageParams
-  self.plotParams
-  self.fileInfo
-  self.baseData
-  self.particleData
-  
+ 
   def __init__(self, partplot = [True, True, True, True, True],
   saveDir = "~/"):
     '''We want to minise on the amount of things given to the init so that we
@@ -64,7 +28,41 @@ class Image(object):
     unlikely to be changed during a script'''
     self.partplot = partplot
     self.saveDir = saveDir
-
+    
+    #initialise variables used so we don't forget about them!
+    
+    self.objectNumber
+    self.objectPosition
+    self.fileDir
+    self.totalDir
+    
+    self.nFof
+    self.centreFof
+    self.fofStep
+    
+    self.imageStyle
+    self.width
+    self.scale
+    self.starScaleFactor
+    self.darkScaleFactor
+    self.tLimits
+    self.xPixels
+    self.yPixels
+    self.useLogh
+    self.useText
+    self.angle
+    self.gasCmap
+    self.cameraZDistance
+    self.perspective
+    self.opacity
+    self.snapNumber
+    
+    self.imageParams
+    self.plotParams
+    self.fileInfo
+    self.baseData
+    self.particleData
+   
     return True
     
   def imageStyleUnpack(self):
