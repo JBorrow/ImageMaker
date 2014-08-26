@@ -99,7 +99,7 @@ class Image(object):
   def fileInfoPack(self, rotating = False):
     '''Packages data in the class to the fileInfo object within the eagle class
     so that we can give it the data we need to put the files where it should'''
-    self.totalDir = (self.SaveDir + "/Webpage/Object%0.f/Snapshot%2.0f/%s/"
+    self.totalDir = (self.saveDir + "/Webpage/Object%0.f/Snapshot%2.0f/%s/"
     % (self.objectNumber, self.snapNumber, self.size))
 
     self.ensureDir(self.totalDir)
