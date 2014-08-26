@@ -84,7 +84,7 @@ class Image(object):
     plotParams.'''
     
     self.imageParams = eagle.ImageParams(self.width, self.scale, zoom = 1.,
-    angle = self.angle, partpot = self.partplot,
+    angle = self.angle, partplot = self.partplot,
     star_scale_factor = self.starScaleFactor,
     dark_scale_factor = self.darkScaleFactor, gas_cmap = self.gasCmap,
     T_limits = self.tLimits, use_logh = self.useLogh,
