@@ -22,12 +22,13 @@ class Image(object):
   number or position etc.'''
  
   def __init__(self, partplot = [True, True, True, True, True],
-  saveDir = "~/"):
+  saveDir = "~/", gasCmap = None):
     '''We want to minise on the amount of things given to the init so that we
     can have maximum flexibility. I think these two are fair as they are
     unlikely to be changed during a script'''
     self.partplot = partplot
     self.saveDir = saveDir
+    self.gasCmap = gasCmap
     
     return
     
