@@ -91,8 +91,8 @@ class Image(object):
     perspective = self.perspective, camera_z_distance = self.cameraZDistance,
     opacity = self.opacity)
 
-    self.plotParams = eagle.PlotParams(xpixels = xPixels, ypixels = yPixels,
-    text = useText)
+    self.plotParams = eagle.PlotParams(xpixels = self.xPixels, 
+    ypixels = self.yPixels, text = self.useText)
 
     return
 
