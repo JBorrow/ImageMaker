@@ -35,6 +35,7 @@ class Image(object):
   def imageStyleUnpack(self):
     '''Takes the given imagestyle and returns the values stored within its
     dictionary to the values in the class'''
+    self.size = self.imageStyle['name']
     self.width = self.imageStyle['width']
     self.scale = N.array(self.imageStyle['scale'])
     self.starScaleFactor = self.imageStyle['star_scale_factor']
