@@ -352,5 +352,48 @@ def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
 
     return
 
+def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
+    snapList = [28], nfof = 50, first_fof = 0, fof_step = 1, subsample = 1,
+    saveDir = "/cosma5/data/dp004/mphf18/test_images/"):
+    '''Makes a 'stereo image' that should look 3d'''
+
+    dir = "."
+
+    for size in sizeList:
+        for snap in snapList:
+            fileDir = ("/Webpage/Gallery/Snapshot%2.0f/%s"%(snap, size['name']))
+            
+            temp = fileDir
+            
+            fileDir += "/right"
+
+            ensureDir(saveDir+fileDir)
+
+            fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir,
+            rotating = False)
+            
+            import NewRotation as NR
+
+            imageParams, plotParams = NR.paramMaker(size)
+
+            baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
+
+            baseData.ReadParticleData(first_fof)
+
+            baseData.plot_image(perspective = True, camera_x_distance = (5./30.))
+
+            fileInfo.savedir = temp + '/left'
+
+            ensureDir(fileInfo.savedir)
+
+            baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
+
+            baseData.ReadParticleData(first_fof)
+
+            baseData.plot_image(perspective = True, camera_x_distance = (-5./30.))
+
+    return
+            
+            
 if __name__ == "__main__":
     makeObjectImages(objectList=[1821])
