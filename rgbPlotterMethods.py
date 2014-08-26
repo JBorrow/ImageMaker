@@ -396,4 +396,4 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             
             
 if __name__ == "__main__":
-    makeObjectImages(objectList=[1821])
+    makeStereoImage(objectList=[1821])
