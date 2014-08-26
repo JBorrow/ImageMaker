@@ -365,6 +365,9 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
         for snap in snapList:
             fileDir = ("/Webpage/Object%4.0f/Snapshot%2.0f/%s"%(object, snap, size['name']))
             
+            delta = 1./30.
+            CZD = 100
+ 
             temp = fileDir
             
             fileDir += "/right"
@@ -384,7 +387,8 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             
             baseData.ReadParticleData(first_fof)
 
-            baseData.plot_image(perspective = True, camera_x_distance = (5./30.))
+            baseData.plot_image(perspective = True, camera_x_distance = (delta),
+camera_z_distance = CZD)
 
             fileDir = temp
             fileDir += "/left"
@@ -399,10 +403,10 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
 
             baseData.ReadParticleData(first_fof)
 
-            baseData.plot_image(perspective = True, camera_x_distance = (-5./30.))
+            baseData.plot_image(perspective = True, camera_x_distance = (-delta), camera_z_distance = CZD)
 
     return
             
             
 if __name__ == "__main__":
-    makeStereoImage(objectList=[0], sizeList=[ImageStyles.xlarge_hr])
+    makeStereoImage(objectList=[1], sizeList=[ImageStyles.xlarge_hr])
