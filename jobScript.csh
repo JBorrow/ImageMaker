@@ -10,11 +10,11 @@
 
 #BSUB -P dp004-eagle
 #BSUB -q shm5
-#BSUB -M 500000  # maximum memory required.  For 25 Mpc
+#BSUB -M 50000  # maximum memory required.  For 25 Mpc
 #BSUB -J image_at_position
 #BSUB -eo /cosma/home/do004/dc-gues3/LogFiles/ObjectWrapper.e%J-%I
 #BSUB -oo /cosma/home/do004/dc-gues3/LogFiles/ObjectWrapper.o%J-%I
-#BSUB -m cosma-f
+#BSUB -m cosma-a
 
 module load python
 
