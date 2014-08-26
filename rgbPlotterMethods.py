@@ -363,7 +363,7 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
 
     for size in sizeList:
         for snap in snapList:
-            fileDir = ("/Webpage/Object%4.4f/Snapshot%2.0f/%s"%(object, snap, size['name']))
+            fileDir = ("/Webpage/Object%4.0f/Snapshot%2.0f/%s"%(object, snap, size['name']))
             
             temp = fileDir
             
@@ -405,4 +405,4 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             
             
 if __name__ == "__main__":
-    makeStereoImage(objectList=[1821])
+    makeStereoImage(objectList=[0], sizeList=[ImageStyles.xlarge_hr])
