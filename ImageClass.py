@@ -29,41 +29,7 @@ class Image(object):
     self.partplot = partplot
     self.saveDir = saveDir
     
-    #initialise variables used so we don't forget about them!
-    
-    self.objectNumber
-    self.objectPosition
-    self.fileDir
-    self.totalDir
-    
-    self.nFof
-    self.centreFof
-    self.fofStep
-    
-    self.imageStyle
-    self.width
-    self.scale
-    self.starScaleFactor
-    self.darkScaleFactor
-    self.tLimits
-    self.xPixels
-    self.yPixels
-    self.useLogh
-    self.useText
-    self.angle
-    self.gasCmap
-    self.cameraZDistance
-    self.perspective
-    self.opacity
-    self.snapNumber
-    
-    self.imageParams
-    self.plotParams
-    self.fileInfo
-    self.baseData
-    self.particleData
-   
-    return True
+    return
     
   def imageStyleUnpack(self):
     '''Takes the given imagestyle and returns the values stored within its
@@ -110,7 +76,7 @@ class Image(object):
     else:
       self.opacity = 0
 
-    return True
+    return
       
   def paramPack(self):
     '''Packs up the data in the class into two subclasses, imageParams and
@@ -127,7 +93,7 @@ class Image(object):
     self.plotParams = eagle.PlotParams(xpixels = xPixels, ypixels = yPixels,
     text = useText)
 
-    return True
+    return
 
   def fileInfoPack(self, rotating = False):
     '''Packages data in the class to the fileInfo object within the eagle class
@@ -140,7 +106,7 @@ class Image(object):
     self.fileInfo = eagle.FileInfo(".", self.snapNumber, "", self.totalDir,
     rotating = rotating)
 
-    return True
+    return
     
   def baseDataGrabber(self):
     '''Grabs the data from eagle when using an object number'''
@@ -148,7 +114,7 @@ class Image(object):
     self.plotParams)
     self.particleData = self.baseData.ReadParticleData(self.objectNumber)
     
-    return True
+    return
 
   def ensureDir(self, directory):
     '''Checks if a directory exists. If it doesn't, it creates it'''
@@ -157,7 +123,7 @@ class Image(object):
     if not os.path.isdir(d):
       os.makedirs(d)
       
-    return True
+    return
   
   def makeObjectImage(self, objectNumber = 0, snapNumber = 28,
   imageStyle = ImageStyles.xsmall):
@@ -174,12 +140,12 @@ class Image(object):
 
     self.baseData.plot_image()
     
-    return True
+    return
 
   def makePosImage(self, position = N.array([0., 0., 0.]), snapNumber = 28,
   imageStyle = ImageStyles.xsmall):
     
-    return True
+    return
 
 if __name__ == "__main__":
   Image = Image()
