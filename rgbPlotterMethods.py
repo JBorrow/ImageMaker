@@ -354,14 +354,16 @@ def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
 
 def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
     snapList = [28], nfof = 50, first_fof = 0, fof_step = 1, subsample = 1,
-    saveDir = "/cosma5/data/dp004/mphf18/test_images/"):
+    saveDir = "/cosma5/data/dp004/mphf18/test_images/", objectList):
     '''Makes a 'stereo image' that should look 3d'''
 
     dir = "."
 
+    object = objectList[0]
+
     for size in sizeList:
         for snap in snapList:
-            fileDir = ("/Webpage/Gallery/Snapshot%2.0f/%s"%(snap, size['name']))
+            fileDir = ("/Webpage/Object%4.4f/Snapshot%2.0f/%s"%(object, snap, size['name']))
             
             temp = fileDir
             
