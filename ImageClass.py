@@ -114,7 +114,8 @@ class Image(object):
     '''Grabs the data from eagle when using an object number'''
     self.baseData = eagle.eagle_image_data(self.fileInfo, self.imageParams,
     self.plotParams)
-    self.particleData = self.baseData.ReadParticleData(self.objectNumber)
+    self.particleData = self.baseData.ReadParticleData(
+    centre_fof = self.objectNumber)
     
     return
 
