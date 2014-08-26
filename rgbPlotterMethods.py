@@ -380,6 +380,8 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
 
+            baseData.ReadGroupData(first_fof)
+            
             baseData.ReadParticleData(first_fof)
 
             baseData.plot_image(perspective = True, camera_x_distance = (5./30.))
@@ -389,6 +391,8 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             ensureDir(fileInfo.savedir)
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
+
+            baseData.ReadGroupData(first_fof)
 
             baseData.ReadParticleData(first_fof)
 
