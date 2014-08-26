@@ -386,9 +386,12 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
 
             baseData.plot_image(perspective = True, camera_x_distance = (5./30.))
 
-            fileInfo.savedir = temp + '/left'
+            fileDir = temp
+            fileDir += "/left"
 
-            ensureDir(fileInfo.savedir)
+            ensureDir(saveDir+fileDir)
+
+            fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir, rotating = False)
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
 
