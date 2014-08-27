@@ -100,8 +100,18 @@ class Image(object):
   def fileInfoPack(self, rotating = False):
     '''Packages data in the class to the fileInfo object within the eagle class
     so that we can give it the data we need to put the files where it should'''
-    self.totalDir = (self.saveDir + "/Webpage/Object%0.f/Snapshot%2.0f/%s/"
-    % (self.objectNumber, self.snapNumber, self.size))
+    
+    try:
+      self.totalDir = (self.saveDir + "/Webpage/Object%0.f/Snapshot%2.0f/%s/"
+      % (self.objectNumber, self.snapNumber, self.size))
+    except NameError:
+      #catch the case where we have a position not an object defined
+      self.totalDir = (self.saveDir + "/Webpage/Centre%3.2f_%3.2f_%3.2f/\
+      Snapshot%2.0f/%s/" % (self.position[0], self.position[1],
+      self.position[2], self.snapNumber, self.size))
+    else:
+      print "Could not create a correct directory path"
+      exit(-1)
 
     self.ensureDir(self.totalDir)
 
@@ -114,9 +124,19 @@ class Image(object):
     '''Grabs the data from eagle when using an object number'''
     self.baseData = eagle.eagle_image_data(self.fileInfo, self.imageParams,
     self.plotParams)
-    self.particleData = self.baseData.ReadParticleData(
-    centre_fof = self.objectNumber)
-    
+    #we must read the group data first
+    try:
+      self.baseData.ReadGroupData(centre_fof = self.objectNumber)
+      self.particleData = self.baseData.ReadParticleData(
+      centre_fof = self.objectNumber)
+    except NameError:
+      #catch the case where we are dealing with a position not an object
+      self.baseData.ReadGroupData(surpress = False, centre = self.position)
+      self.particleData = self.baseData.ReadParticleData(centre = self.position)
+    else:
+      print 'Could not decide if I was a centre or an object when reading data'
+      exit(-1)
+
     return
 
   def ensureDir(self, directory):
@@ -147,7 +167,18 @@ class Image(object):
 
   def makePosImage(self, position = N.array([0., 0., 0.]), snapNumber = 28,
   imageStyle = ImageStyles.xsmall):
+    self.position = position
+    self.snapNumber = snapNumber
+    self.imageStyle = imageStyle
     
+    self.imageStyleUnpack()
+    self.paramPack() 
+    self.fileInfoPack(rotating = False)
+    
+    self.baseDataGrabber()
+    
+    self.baseData.plot_image()
+     
     return
 
 if __name__ == "__main__":
