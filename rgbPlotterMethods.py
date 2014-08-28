@@ -417,15 +417,25 @@ def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
 
     for core in range(10):
         jobs = []
-        for angle in range(core, 360, 10):
-            jobs.append(Process(target=makeStereoImage, args=(text, sizeList,
-            snapList, nfof, first_fof, fof_step, subsample, saveDir, objectList,
-            angle)))
+        jobs.append(Process(target=angleIteratorForStereo, args=(text, sizeList,
+        snapList, nfof, first_fof, fof_step, subsample, saveDir, objectList,
+        core))) 
 
-        for process in jobs:
-            process.join()
+    for process in jobs:
+        process.start()
+
+    for process in jobs:
+        process.join()
 
     return
-            
+
+def angleIteratorForStereo(text, sizeList, snapList, nfof, first_fof, fof_step,
+    subsample, saveDir, objectList, core):
+    for angle in range(core, 360, 10):
+        makeStereoImage(text, sizeList, snapList, nfof, first_fof, fof_step,
+        subsample, saveDir, objectList, angle)
+    
+    return
+   
 if __name__ == "__main__":
-    makeStereoImage(objectList=[1172], sizeList=[ImageStyles.xsmall])
+    stereoRotationMaker(objectList=[1172], sizeList=[ImageStyles.xsmall])
