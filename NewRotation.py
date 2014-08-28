@@ -21,7 +21,7 @@ def ensureDir(directory):
     os.system("mkdir -p -v " + directory)
 
 def paramMaker(style = ImageStyles.xsmall, gasCmap = None,
-    partplot = [True, True, True, True, True]):
+    partplot = [True, True, True, True, True], angle = 0):
     '''
     This funtion populates some imageParams and plotParams variables with the
     given values from the style etc.
@@ -60,7 +60,7 @@ def paramMaker(style = ImageStyles.xsmall, gasCmap = None,
         angle = style['angle']
 
     else:
-        angle = 0
+        angle = angle
 
 
     if not gasCmap:

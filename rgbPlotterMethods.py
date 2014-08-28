@@ -14,6 +14,8 @@ Institute for Computational Cosmology
 
 from ImageStyles import *
 
+import NewRotation as NR            
+
 import plot_eagle_image as eagle
 import sys
 import numpy as N
@@ -380,8 +382,6 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir,
             rotating = False)
             
-            import NewRotation as NR
-
             imageParams, plotParams = NR.paramMaker(size, angle=angle)
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
