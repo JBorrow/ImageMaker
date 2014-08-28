@@ -368,8 +368,8 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
         for snap in snapList:
             fileDir = ("/Webpage/Object%4.0f/Snapshot%2.0f/%s"%(object, snap, size['name']))
             
-            delta = 1.
-            CZD = 100.
+            delta = 0.1
+            CZD = 10.
  
             temp = fileDir
             
@@ -428,4 +428,4 @@ def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
     return
             
 if __name__ == "__main__":
-    makeStereoImage(objectList=[1], sizeList=[ImageStyles.xlarge_hr])
+    makeStereoImage(objectList=[1172], sizeList=[ImageStyles.xsmall])
