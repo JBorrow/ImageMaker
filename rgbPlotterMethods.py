@@ -14,15 +14,11 @@ Institute for Computational Cosmology
 
 from ImageStyles import *
 
-import NewRotation as NR            
+import NewRotation as NR
 
 import plot_eagle_image as eagle
-import sys
 import numpy as N
-import time
-import pylab as P
 import os
-import fnmatch
 from multiprocessing import Process
 
 #make sure you're eagle
@@ -369,25 +365,25 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
     for size in sizeList:
         for snap in snapList:
             fileDir = ("/Webpage/Object%4.0f/Snapshot%2.0f/%s"%(object, snap, size['name']))
-            
+
             delta = 0.1
             CZD = 10.
- 
+
             temp = fileDir
-            
+
             fileDir += "/right"
 
             ensureDir(saveDir+fileDir)
 
             fileInfo = eagle.FileInfo(dir, snap, "", saveDir+fileDir,
             rotating = False)
-            
+
             imageParams, plotParams = NR.paramMaker(size, angle=angle)
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
 
             baseData.ReadGroupData(first_fof)
-            
+
             baseData.ReadParticleData(first_fof)
 
             baseData.plot_image(perspective = True, camera_x_distance = (delta),
@@ -419,7 +415,7 @@ def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
         jobs = []
         jobs.append(Process(target=angleIteratorForStereo, args=(text, sizeList,
         snapList, nfof, first_fof, fof_step, subsample, saveDir, objectList,
-        core))) 
+        core)))
 
     for process in jobs:
         process.start()
@@ -434,8 +430,8 @@ def angleIteratorForStereo(text, sizeList, snapList, nfof, first_fof, fof_step,
     for angle in range(core, 360, 10):
         makeStereoImage(text, sizeList, snapList, nfof, first_fof, fof_step,
         subsample, saveDir, objectList, angle)
-    
+
     return
-   
+
 if __name__ == "__main__":
     stereoRotationMaker(objectList=[1172], sizeList=[ImageStyles.xsmall])
