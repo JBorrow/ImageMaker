@@ -365,7 +365,7 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
         for snap in snapList:
             fileDir = ("/Webpage/Object%4.0f/Snapshot%2.0f/%s"%(object, snap, size['name']))
             
-            delta = 1.
+            delta = 2.
             CZD = 100.
  
             temp = fileDir
