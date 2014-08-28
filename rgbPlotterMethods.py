@@ -21,6 +21,7 @@ import time
 import pylab as P
 import os
 import fnmatch
+from multiprocessing import Process
 
 #make sure you're eagle
 
@@ -32,7 +33,8 @@ def ensureDir(directory):
         os.makedirs(d)
 
 def fofGallery(fileInfo, style=ImageStyles.xsmall, nfof=1, first_fof=1,
-    fof_step=1, gasCmap=None, partplot = [True, True, True, True, False]):
+    fof_step=1, gasCmap=None, partplot = [True, True, True, True, False],
+    angle = 0):
     '''
     This makes an image with a scaling suitable for looking at an individual
     galaxy. Object 1 is the first halo, and this method doesn't work for
@@ -75,7 +77,7 @@ def fofGallery(fileInfo, style=ImageStyles.xsmall, nfof=1, first_fof=1,
         angle = style['angle']
 
     else:
-        angle = 0
+        angle = angle
 
 
     if not gasCmap:
@@ -354,7 +356,8 @@ def makeObjectGallery(text = True, sizeList = [ImageStyles.xsmall],
 
 def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
     snapList = [28], nfof = 50, first_fof = 0, fof_step = 1, subsample = 1,
-    saveDir = "/cosma5/data/dp004/mphf18/test_images/", objectList=[0]):
+    saveDir = "/cosma5/data/dp004/mphf18/test_images/", objectList=[0],
+    angle = 0.):
     '''Makes a 'stereo image' that should look 3d'''
 
     dir = "."
@@ -379,7 +382,7 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             
             import NewRotation as NR
 
-            imageParams, plotParams = NR.paramMaker(size)
+            imageParams, plotParams = NR.paramMaker(size, angle=angle)
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
 
@@ -406,7 +409,23 @@ camera_z_distance = CZD)
             baseData.plot_image(perspective = True, camera_x_distance = (-delta), camera_z_distance = CZD)
 
     return
-            
+
+def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
+    snapList = [28], nfof = 50, first_fof = 0, fof_step = 1, subsample = 1,
+    saveDir = "/cosma5/data/dp004/mphf18/test_images/", objectList=[0]):
+    '''Makes a rotation but in stereo'''
+
+    for core in range(10):
+        jobs = []
+        for angle in range(core, 360, 10):
+            jobs.append(Process(target=makeStereoImage, args=(text, sizeList,
+            snapList, nfof, first_fof, fof_step, subsample, saveDir, objectList,
+            angle)))
+
+        for process in jobs:
+            process.join()
+
+    return
             
 if __name__ == "__main__":
     makeStereoImage(objectList=[1], sizeList=[ImageStyles.xlarge_hr])
