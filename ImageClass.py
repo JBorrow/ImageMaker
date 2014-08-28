@@ -2,12 +2,14 @@
 time working with Richard Bower and others at the ICC in Durham on the EAGLE
 project.
 
-It is used to create images, videos etc of the data from the EAGLE project.
+This class is used to create images of a given object or given position.
+That is all. Making rotations, etc. is handled by other classes.
 
 Joshua Borrow
 24/07/2014
 Institute For Computataional Cosmology, Durham University
 The EAGLE Project
+joshua.borrow@durham.ac.uk
 '''
 
 import os
@@ -149,13 +151,14 @@ class Image(object):
     return
   
   def makeObjectImage(self, objectNumber = 0, snapNumber = 28,
-  imageStyle = ImageStyles.xsmall):
+  imageStyle = ImageStyles.xsmall, angle = 0):
     self.objectNumber = objectNumber
     self.snapNumber = snapNumber
     self.imageStyle = imageStyle
     
     self.imageStyleUnpack()
     #package parameters ready for passing to eagle
+    self.angle = angle
     self.paramPack()
     self.fileInfoPack(rotating = False)
     
@@ -166,12 +169,13 @@ class Image(object):
     return
 
   def makePosImage(self, position = N.array([0., 0., 0.]), snapNumber = 28,
-  imageStyle = ImageStyles.xsmall):
+  imageStyle = ImageStyles.xsmall, angle):
     self.position = position
     self.snapNumber = snapNumber
     self.imageStyle = imageStyle
     
     self.imageStyleUnpack()
+    self.angle = angle
     self.paramPack() 
     self.fileInfoPack(rotating = False)
     
