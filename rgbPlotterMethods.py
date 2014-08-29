@@ -19,6 +19,7 @@ import NewRotation as NR
 import plot_eagle_image as eagle
 import numpy as N
 import os
+import time
 from multiprocessing import Process
 
 #make sure you're eagle
@@ -382,9 +383,9 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
 
-            baseData.ReadGroupData(first_fof)
+            baseData.ReadGroupData(object)
 
-            baseData.ReadParticleData(first_fof)
+            baseData.ReadParticleData(object)
 
             baseData.plot_image(perspective = True, camera_x_distance = (delta),
 camera_z_distance = CZD)
@@ -398,9 +399,9 @@ camera_z_distance = CZD)
 
             baseData = eagle.eagle_image_data(fileInfo, imageParams, plotParams)
 
-            baseData.ReadGroupData(first_fof)
+            baseData.ReadGroupData(object)
 
-            baseData.ReadParticleData(first_fof)
+            baseData.ReadParticleData(object)
 
             baseData.plot_image(perspective = True, camera_x_distance = (-delta), camera_z_distance = CZD)
 
@@ -419,6 +420,8 @@ def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
 
     for process in jobs:
         process.start()
+    
+    time.wait(10)
 
     for process in jobs:
         process.join()
