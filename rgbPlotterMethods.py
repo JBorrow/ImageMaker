@@ -411,13 +411,16 @@ def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
     snapList = [28], nfof = 50, first_fof = 0, fof_step = 1, subsample = 1,
     saveDir = "/cosma5/data/dp004/mphf18/test_images/", objectList=[0]):
     '''Makes a rotation but in stereo'''
-
+    jobs = []
     for core in range(10):
-        jobs = []
-        jobs.append(Process(target=angleIteratorForStereo, args=(text, sizeList,
+        process = Process(target=angleIteratorForStereo, args=(text, sizeList,
         snapList, nfof, first_fof, fof_step, subsample, saveDir, objectList,
-        core)))
-
+        core))
+        jobs.append(process)
+    print '============================================================='
+    print 'Job array'
+    print jobs
+    print '============================================================='
     for process in jobs:
         process.start()
     
