@@ -440,4 +440,4 @@ def angleIteratorForStereo(text, sizeList, snapList, nfof, first_fof, fof_step,
     return
 
 if __name__ == "__main__":
-    stereoRotationMaker(objectList=[1172], sizeList=[ImageStyles.xsmall])
+    stereoRotationMaker(objectList=[1217], sizeList=[ImageStyles.joshrot])
