@@ -25,7 +25,7 @@ class Image3D(object):
         self.saveRes = saveRes 
 
         print "Grabbing filenames from %s" % (rightDir)
-        self.fileNameGrabber()
+        #self.fileNameGrabber()
 
         return
 
@@ -114,22 +114,21 @@ class Image3D(object):
         
         cropBox = (l, t, r, b)
 
-        right.crop(cropBox)
-        left.crop(cropBox)
-        
+        right = right.crop(cropBox)
+        left = left.crop(cropBox)
         # now we need to stretch them so they each fill half the canvas
 
         if outputY % 2 == 0:
-            right.resize((outputX, outputY/2))
-            left.resize((outputX, outputY/2))
+            right = right.resize((outputX, outputY/2))
+            left = left.resize((outputX, outputY/2))
         else:
             # again, we have an extra pixel to play with
-            right.resize((outputX, outputY/2 + 1))
-            left.resize((outputX, outputY/2))
+            right = right.resize((outputX, outputY/2 + 1))
+            left = left.resize((outputX, outputY/2))
 
         # we can add the pictures together now
         
-        canvas = Image.new(1, self.saveRes)
+        canvas = Image.new("RGBA", self.saveRes)
 
         # make sure left is top and right bottom or else headache
 
@@ -142,4 +141,4 @@ class Image3D(object):
 
 if __name__ == "__main__":
     image = Image3D()
-    image.imageTo3D("~/right/star", "~/left/star")
+    image.imageTo3D("/home/josh/right/star.png", "/home/josh/left/star.png")
