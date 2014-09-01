@@ -18,11 +18,12 @@ class Image3D(object):
     '''Contains all of the methods used to change the data into 3-D formats'''
 
     def __init__(self, rightDir = '~/right', leftDir = '~/left',
-    saveDir = '~/3D'):
+    saveDir = '~/3D', saveRes = (1920, 1080)):
         self.rightDir = rightDir
         self.leftDir = leftDir
         self.saveDir = saveDir
-            
+        self.saveres = saveRes 
+
         print "Grabbing filenames from %s" % (rightDir)
         self.fileNameGrabber()
 
@@ -48,11 +49,57 @@ class Image3D(object):
         cleanListRight = self.fileListClean(initialListRight)
         cleanListLeft = self.fileListClean(initialListLeft)
 
-        if not cleanListRight == cleanListLeft:
+        if cleanListRight != cleanListLeft:
             print "ERROR: Filenames in left/right directories are not the same."
+            print "FILE: Image3D.py" 
             exit(-1)
 
         return cleanListRight
 
-    def imageTo3D(self, fileName):
+    def imageTo3D(self, pathRight, pathLeft):
+        '''Takes two paths and combines them to make a 3D image of the same
+        name'''
+        right = Image.open(pathRight)
+        left = Image.open(pathLeft)
+        
+        if right.size != left.size:
+            print "ERROR: Images are not the same size"
+            print "FILE: Image3D.py" 
+            exit(-1)
+
+        # now we figure out the geometry of the situation
+        inputX = right.size[0]
+        inputY = right.size[1]
+        outputX = self.saveRes[0]
+        outputY = self.saveRes[1]
+
+        # if images are bigger, crop
+        if inputX > outputX:
+            diffX = inputX - outputX
+            if diffX % 2 == 0:
+                leftCrop = diffX/2
+                rightCrop = inputX - diffX/2
+            else:
+                # give right the extra pixel
+                leftCrop = diffX/2
+                rightCrop = (inputX - (diffX/2)) - 1
+            
+        else:
+            rightCrop = inputX
+            leftCrop = 0
+
+        if inputY > outputY
+            diffY = inputY - outputY
+            if diffY % 2 == 0:
+                topCrop = diffY/2
+                bottomCrop = inputY - diffY/2
+            else:
+                # give bottom the extra pixel
+                topCrop = diffY/2
+                bottomCrop = (inputY - (diffY/2)) - 1
+                
+        else:
+            topCrop = 0
+            bottomCrop = inputY 
+
         return
