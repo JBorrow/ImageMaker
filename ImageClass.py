@@ -126,7 +126,7 @@ class Image(object):
         return
         
     def baseDataGrabber(self):
-        '''Grabs the data from eagle when using an object number'''
+        '''Grabs the data from eagle when using an object number/position'''
         self.baseData = eagle.eagle_image_data(self.fileInfo, self.imageParams,
         self.plotParams)
         #we must read the group data first
@@ -189,6 +189,29 @@ class Image(object):
         self.baseData.plot_image()
          
         return
+
+    def makeStereoObjectImage(self, objectNumber = 0, snapNumber = 28,
+    imageStyle = ImageStyles.xsmall, angle = 0, cameraZDistance = 10,
+    cameraXDistance = 0.1):
+        '''This creates a stereo image of a given object, saving in left/right
+        subdirectories for individual eyes.
+        
+        We reccommend that the cameraZDistance/cameraXDistance ~ 100'''
+        self.objectNumber = objectNumber
+        self.snapNumber = snapNumber
+        self.imageStyle = imageStyle
+        self.cameraZDistance = cameraZDistance
+        self.cameraXDistance = cameraXDistance
+
+        self.imageStyleUnpack()
+        self.angle = angle
+        self.paramPack()
+        self.fileInfoPack(rotating = False)
+
+        self.baseDataGrabber()
+
+        return
+        
 
 if __name__ == "__main__":
     Image = Image()
