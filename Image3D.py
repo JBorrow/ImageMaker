@@ -156,7 +156,8 @@ class Image3D(object):
 
     def makeDir3D(self):
         '''Iterates over all of the files in the fileList'''
-        for file in self.fileList:
+        for i, file in enumerate(self.fileList):
+            print "Making image %i of %i" % (i + 1, len(self.fileList))
             self.imageTo3D(self.rightDir + "/" + file,
             self.leftDir + "/" + file, self.saveDir + "/" + file)
 
