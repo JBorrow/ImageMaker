@@ -148,10 +148,8 @@ class Image(object):
 
     def ensureDir(self, directory):
         '''Checks if a directory exists. If it doesn't, it creates it'''
-        d = os.path.dirname(directory)
-        
-        if not os.path.isdir(d):
-            os.makedirs(d)
+        if not os.path.isdir(directory):
+            os.makedirs(directory)
                 
         return
 

@@ -17,18 +17,33 @@ import os
 class Image3D(object):
     '''Contains all of the methods used to change the data into 3-D formats'''
 
-    def __init__(self, rightDir = '~/right', leftDir = '~/left',
-    saveDir = '~/3D', saveRes = (1920, 1080)):
+    def __init__(self, rightDir = r'/home/josh/right',
+    leftDir = r'/home/josh/left', saveDir = r'/home/josh/3D',
+    saveRes = (1920, 1080)):
         self.rightDir = rightDir
         self.leftDir = leftDir
         self.saveDir = saveDir
         self.saveRes = saveRes 
 
         print "Grabbing filenames from %s" % (rightDir)
-        #self.fileNameGrabber()
+        self.fileList = self.fileNameGrabber()
 
+        self.ensureDir(saveDir)
+
+        print "Making 3D images from %s and placing them in %s" % (rightDir,
+        saveDir)
+
+        self.makeDir3D()
+        
         return
 
+    def ensureDir(self, directory):
+        '''Checks if a directory exists. If it doesn't, it creates it'''
+        if not os.path.isdir(directory):
+            os.makedirs(directory)
+                                                    
+        return
+    
     def fileListClean(self, list):
         '''Looks in list, and checks if the values are hidden, if they are they
         get removed''' 
@@ -139,6 +154,13 @@ class Image3D(object):
         
         return
 
+    def makeDir3D(self):
+        '''Iterates over all of the files in the fileList'''
+        for file in self.fileList:
+            self.imageTo3D(self.rightDir + "/" + file,
+            self.leftDir + "/" + file, self.saveDir + "/" + file)
+
+        return
+
 if __name__ == "__main__":
-    image = Image3D()
-    image.imageTo3D("/home/josh/right/star.png", "/home/josh/left/star.png")
+    x = Image3D()
