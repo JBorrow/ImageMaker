@@ -71,7 +71,8 @@ class Image3D(object):
 
         return cleanListRight
 
-    def imageTo3D(self, pathRight, pathLeft, savePath):
+    def imageTo3D(self, pathRight, pathLeft, savePath,
+        resizeFilter = Image.ANTIALIAS):
         '''Takes two paths and combines them to make a 3D image of the same
         name'''
         right = Image.open(pathRight)
@@ -132,14 +133,13 @@ class Image3D(object):
         right = right.crop(cropBox)
         left = left.crop(cropBox)
         # now we need to stretch them so they each fill half the canvas
-
         if outputY % 2 == 0:
-            right = right.resize((outputX, outputY/2))
-            left = left.resize((outputX, outputY/2))
+            right = right.resize((outputX, outputY/2), resizeFilter)
+            left = left.resize((outputX, outputY/2), resizeFilter)
         else:
             # again, we have an extra pixel to play with
-            right = right.resize((outputX, outputY/2 + 1))
-            left = left.resize((outputX, outputY/2))
+            right = right.resize((outputX, outputY/2 + 1), resizeFilter)
+            left = left.resize((outputX, outputY/2), resizeFilter)
 
         # we can add the pictures together now
         
