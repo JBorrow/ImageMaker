@@ -189,7 +189,7 @@ class Image(object):
         return
 
     def makeStereoObjectImage(self, objectNumber = 0, snapNumber = 28,
-    imageStyle = ImageStyles.xsmall, angle = 0, cameraZDistance = 10,
+    imageStyle = ImageStyles.xsmall, angle = 0, cameraZDistance = False,
     cameraXDistance = 0.1):
         '''This creates a stereo image of a given object, saving in left/right
         subdirectories for individual eyes.
@@ -198,15 +198,26 @@ class Image(object):
         self.objectNumber = objectNumber
         self.snapNumber = snapNumber
         self.imageStyle = imageStyle
-        self.cameraZDistance = cameraZDistance
         self.cameraXDistance = cameraXDistance
 
         self.imageStyleUnpack()
         self.angle = angle
+        if cameraZDistance:
+            self.cameraZDistance = cameraZDistance
+
         self.paramPack()
         self.fileInfoPack(rotating = False)
 
         self.baseDataGrabber()
+        
+        # make right
+        self.baseData.plot_image(perspective = True,
+        camera_x_distance = self.cameraXDistance,
+        camera_z_distance = cameraZDistance)
+        # make left
+        self.baseData.plot_image(perspective = True,
+        camera_x_distance = -self.cameraXDistance,
+        camera_z_distance = cameraZDistance)
 
         return
         
