@@ -56,7 +56,7 @@ class Image3D(object):
 
         return cleanListRight
 
-    def imageTo3D(self, pathRight, pathLeft):
+    def imageTo3D(self, pathRight, pathLeft, savePath):
         '''Takes two paths and combines them to make a 3D image of the same
         name'''
         right = Image.open(pathRight)
@@ -135,7 +135,7 @@ class Image3D(object):
         canvas.paste(left, (0,0))
         canvas.paste(right, (0, (outputY / 2) + 1))
         
-        canvas.show()
+        canvas.save(savePath, "PNG")
         
         return
 
