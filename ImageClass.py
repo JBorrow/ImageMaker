@@ -172,7 +172,7 @@ class Image(object):
         return
 
     def makePosImage(self, position = N.array([0., 0., 0.]), snapNumber = 28,
-    imageStyle = ImageStyles.xsmall, angle):
+    imageStyle = ImageStyles.xsmall, angle = 0):
         self.position = position
         self.snapNumber = snapNumber
         self.imageStyle = imageStyle
