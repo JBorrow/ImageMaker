@@ -59,10 +59,20 @@ class Rotation(ImageClass.Image):
             for angle in range(startAngle, startAngle + step):
                 # we start some processes up for each angle and kill them after
                 # to keep the memory useage low
-                ok = 10 
+                jobs.append(Process(target = self.makeImageFromBaseData,
+                args = (angle)))
+
+            for job in jobs:
+                job.start()
+
+            for job in jobs:
+                job.join()
+
         return
 
     def makeImageFromBaseData(self, angle = 0):
+        '''Uses self.baseData to create images of some given angle'''
+
         thisData = copy.deepcopy(self.baseData)
 
         thisData.ImageParams.angle = angle
@@ -71,16 +81,7 @@ class Rotation(ImageClass.Image):
         thisData = None
 
         return
-		
-    def angleIterator(self, objectNumber, snapNumber, imageStyle, nFrames,
-    nCores, thisCore):
-	'''This function is used to iterate through the angles and create
-        images at each point. It is a very basic function that will just call
-        the makeObjectImage or makePosImage. This is semi inefficient as it
-        reads each time, but this **SHOULD** reduce memory useage.'''
 
-        for angle in range(thisCore, nFrames/nCores, nFrames):
-	#We need to create instances of the object for every single angle
-	#so that we don't mess up self variables
-	    ok = 10 
-        return
+if __name__ == "__main__":
+    rot = Rotation()
+    rot.makeObjectRotation(objectNumber=1727)
