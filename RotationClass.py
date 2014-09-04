@@ -36,26 +36,41 @@ class Rotation(ImageClass.Image):
         defaults of 360 and 4 respecvitely. nFrames % nCores must be equal to 0
         otherwise we will have missed frames'''
 
-	if nFrames % nCores != 0:
+	# first we get the 'baseData' which contains all the info for us to plot
+        self.objectNumber = objectNumber
+        self.snapNumber = snapNumber
+        self.imageStyle = imageStyle
+
+        self.imageStyleUnpack()
+        #now we package
+        self.paramPack()
+        self.fileInfoPack(rotating = False)
+
+        self.baseDataGrabber
+        
+        if nFrames % nCores != 0:
 	    print "Sorry, you need to have nFrames % nCores == 0"
 	    exit(-1)
 		
         step = nFrames/nCores
 
-	jobs = []
-	for core in range(step):
-	    jobs.append(Process(target = self.angleIterator,
-	    args = (objectNumber, snapNumber,imageStyle, nFrames, nCores,
-            core)))
-		
-        for job in jobs:
-	    job.start()
+        for startAngle in range(0, 360, step):
+            jobs = []
+            for angle in range(startAngle, startAngle + step):
+                # we start some processes up for each angle and kill them after
+                # to keep the memory useage low
+                ok = 10 
+        return
 
-	#so we don't miss frames
-	for job in jobs:
-	    job.join()
+    def makeImageFromBaseData(self, angle = 0):
+        thisData = copy.deepcopy(self.baseData)
 
-	return
+        thisData.ImageParams.angle = angle
+        thisData.plot_image()
+
+        thisData = None
+
+        return
 		
     def angleIterator(self, objectNumber, snapNumber, imageStyle, nFrames,
     nCores, thisCore):
@@ -67,10 +82,5 @@ class Rotation(ImageClass.Image):
         for angle in range(thisCore, nFrames/nCores, nFrames):
 	#We need to create instances of the object for every single angle
 	#so that we don't mess up self variables
-	    thisAngle = ImageClass.Image(self.partplot, self.saveDir,
-            self.gasCmap)
-	    thisAngle.makeObjectImage(objectNumber, snapNumber, imageStyle,
-            angle)
-	    thisAngle = None
-
-	return
+	    ok = 10 
+        return
