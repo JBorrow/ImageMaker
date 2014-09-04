@@ -84,5 +84,5 @@ class Rotation(ImageClass.Image):
         return
 
 if __name__ == "__main__":
-    rot = Rotation(saveDir = "/cosma/home/mphf18/Data")
-    rot.makeObjectRotation(objectNumber=1727)
+	rot = Rotation(saveDir = "/cosma5/data/dp004/mphf18/test_images")
+	rot.makeObjectRotation(objectNumber=1727)
