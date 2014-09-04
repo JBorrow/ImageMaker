@@ -10,6 +10,7 @@ The EAGLE Project
 joshua.borrow@durham.ac.uk
 '''
 
+from ImageStyles import * 
 import ImageClass
 import copy
 from multiprocessing import Process
