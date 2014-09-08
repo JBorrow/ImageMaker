@@ -64,12 +64,16 @@ class Image3D(object):
         cleanListRight = self.fileListClean(initialListRight)
         cleanListLeft = self.fileListClean(initialListLeft)
 
-        if cleanListRight != cleanListLeft:
-            print "ERROR: Filenames in left/right directories are not the same."
-            print "FILE: Image3D.py" 
-            exit(-1)
+        for i in range(len(cleanListRight)):
+            if cleanListRight[i] == cleanListLeft[i]:
+                continue
+            else:
+                print "ERROR: Filenames in left/right directories are different"
+                print "DIFF: %s:%s" % (cleanListRight[i], cleanListLeft[i])
+                print "FILE: Image3D.py" 
+                exit(-1)
 
-        return cleanListRight
+        return
 
     def imageTo3D(self, pathRight, pathLeft, savePath,
         resizeFilter = Image.ANTIALIAS):
