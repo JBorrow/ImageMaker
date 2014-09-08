@@ -55,7 +55,7 @@ class Image3D(object):
             else:
                 cleanList.append(value)
 
-        return cleanList.sort()
+        return sorted(cleanList)
 
     def fileNameGrabber(self):
         initialListRight = os.listdir(self.rightDir)
@@ -63,6 +63,11 @@ class Image3D(object):
          
         cleanListRight = self.fileListClean(initialListRight)
         cleanListLeft = self.fileListClean(initialListLeft)
+        print "==================== RIGHT LIST ======================"
+        print cleanListRight
+        print "==================== LEFT LIST ======================="
+        print cleanListLeft
+        print "======================================================"
 
         for i in range(len(cleanListRight)):
             if cleanListRight[i] == cleanListLeft[i]:
