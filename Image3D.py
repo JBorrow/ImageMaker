@@ -78,7 +78,7 @@ class Image3D(object):
                 print "FILE: Image3D.py" 
                 exit(-1)
 
-        return
+        return cleanListRight
 
     def imageTo3D(self, pathRight, pathLeft, savePath,
         resizeFilter = Image.ANTIALIAS):
