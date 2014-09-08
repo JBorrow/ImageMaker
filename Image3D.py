@@ -55,7 +55,7 @@ class Image3D(object):
             else:
                 cleanList.append(value)
 
-        return cleanList
+        return cleanList.sort()
 
     def fileNameGrabber(self):
         initialListRight = os.listdir(self.rightDir)
