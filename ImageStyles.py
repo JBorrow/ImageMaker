@@ -246,6 +246,18 @@ class ImageStyles:
     'text' : False,
     }
 
+    josh_3D = {
+    'name' : "josh_3D",
+    'width' : N.array([10.,10.,10.]),
+    'scale' : [0.2, 500.],
+    'star_scale_factor' : 1.,
+    'dark_scale_factor' : 50000.,
+    'gas_cmap' : None,
+    'T_limits' : [4.5,5.5,10.],
+    'pixels' : [2400,2400],
+    'text' : False,
+    }
+
     custom = {
     'name' : 'custom',
     'width' : 15.0,
