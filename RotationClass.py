@@ -32,10 +32,14 @@ class Rotation(ImageClass.Image):
 	return
 
     def makeObjectRotation(self, imageStyle = ImageStyles.xsmall,
-    snapNumber = 28, objectNumber = 0, text = True, nFrames = 360, nCores = 4):
+    snapNumber = 28, objectNumber = 0, text = True, nFrames = 360, nCores = 4,
+	cameraXDistance = 0, cameraZDistance = 10):
         '''This requires a number of frames and number of cores, which have
         defaults of 360 and 4 respecvitely. nFrames % nCores must be equal to 0
-        otherwise we will have missed frames'''
+        otherwise we will have missed frames
+		
+		To make a 3-D rotation,. simply supply a cameraXDistance (reccomend
+		a 1:75 ratio of CXD : CZD'''
 
 	# first we get the 'baseData' which contains all the info for us to plot
         self.objectNumber = objectNumber
@@ -72,16 +76,27 @@ class Rotation(ImageClass.Image):
         return
 
     def makeImageFromBaseData(self, angle = 0):
-        '''Uses self.baseData to create images of some given angle'''
+		'''Uses self.baseData to create images of some given angle'''
+		thisData = copy.deepcopy(self.baseData)
+		originalSaveDir = thisData.FileInfo.saveDir
+		thisData.imageParams.angle = angle
+		
+		if self.cameraXDistance:
+			for side in ("left", "right"):
+				thisData.FileInfo.saveDir = originalSaveDir + "/" + side
+				if side == "left":
+					cXD = self.cameraXDistance
+				elif side == "right":
+					cXD = -self.cameraXDistance
 
-        thisData = copy.deepcopy(self.baseData)
+				thisData.plot_image(perspective = True, camera_x_distance = cXD,
+				camera_z_distance = self.cameraZDistance)
+		else:
+			thisData.plot_image()
 
-        thisData.imageParams.angle = angle
-        thisData.plot_image()
+		thisData = None
 
-        thisData = None
-
-        return
+		return
 
 if __name__ == "__main__":
 	rot = Rotation()
