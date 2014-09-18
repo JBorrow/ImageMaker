@@ -83,7 +83,7 @@ class Rotation(ImageClass.Image):
 		
 		if self.cameraXDistance:
 			for side in ("left", "right"):
-				thisData.FileInfo.saveDir = originalSaveDir + "/" + side
+				thisData.fileInfo.saveDir = originalSaveDir + "/" + side
 				if side == "left":
 					cXD = self.cameraXDistance
 				elif side == "right":
