@@ -25,11 +25,11 @@ class Rotation(ImageClass.Image):
 		This is kept minimal so we can give the user as much flexibility as
 		possible'''
 		
-	self.partplot = partplot
-	self.saveDir = saveDir
-	self.gasCmap = gasCmap
+		self.partplot = partplot
+		self.saveDir = saveDir
+		self.gasCmap = gasCmap
 		
-	return
+		return
 
 	def makeObjectRotation(self, imageStyle = ImageStyles.xsmall,
 	snapNumber = 28, objectNumber = 0, text = True, nFrames = 360, nCores = 4,
