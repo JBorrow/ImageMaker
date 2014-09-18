@@ -114,9 +114,9 @@ class Image(object):
             self.totalDir = (self.saveDir + "/Webpage/Centre%3.2f_%3.2f_%3.2f/\
             Snapshot%2.0f/%s/" % (self.position[0], self.position[1],
             self.position[2], self.snapNumber, self.size))
-        else:
+        '''else:
             print "Could not create a correct directory path"
-            exit(-1)
+            exit(-1)'''
 
         self.ensureDir(self.totalDir)
 
