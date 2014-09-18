@@ -10,12 +10,12 @@
 
 #BSUB -P dp004-eagle
 #BSUB -q shm5
-#BSUB -M 50000  # maximum memory required.  For 25 Mpc
+#BSUB -M 100000  # maximum memory required.  For 25 Mpc
 #BSUB -J image_at_position
 #BSUB -eo /cosma/home//mphf18/LogFiles/ObjectWrapper.e%J-%I
 #BSUB -oo /cosma/home//mphf18/LogFiles/ObjectWrapper.o%J-%I
 #BSUB -m cosma-b
 
 module load python
-
+cd ~/RunDir
 python ~/ImageMaker/RotationClass.py

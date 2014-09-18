@@ -24,7 +24,7 @@ class Image(object):
     number or position etc.'''
  
     def __init__(self, partplot = [True, True, True, True, True],
-    saveDir = "~/", gasCmap = None):
+    saveDir = "/cosma/home/mphf18/Data/test_images", gasCmap = None):
         '''We want to minise on the amount of things given to the init so that
         we can have maximum flexibility. I think these two are fair as they are
         unlikely to be changed during a script'''
@@ -114,9 +114,6 @@ class Image(object):
             self.totalDir = (self.saveDir + "/Webpage/Centre%3.2f_%3.2f_%3.2f/\
             Snapshot%2.0f/%s/" % (self.position[0], self.position[1],
             self.position[2], self.snapNumber, self.size))
-        '''else:
-            print "Could not create a correct directory path"
-            exit(-1)'''
 
         self.ensureDir(self.totalDir)
 
@@ -140,9 +137,6 @@ class Image(object):
             centre = self.position)
             self.particleData = self.baseData.ReadParticleData(
             centre = self.position)
-        else:
-            print 'Unable to decide between centre or object when reading'
-            exit(-1)
 
         return
 
@@ -225,5 +219,5 @@ class Image(object):
 
 if __name__ == "__main__":
     Image = Image()
-    Image.makeObjectImage(objectNumber = 1172)
+    Image.makeObjectImage(objectNumber = 1939)
 

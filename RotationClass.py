@@ -20,7 +20,7 @@ class Rotation(ImageClass.Image):
     minimal'''
 	
     def __init__(self, partplot = [True, True, True, True, True],
-    saveDir = "~", gasCmap = None):
+    saveDir = "/cosma/home/mphf18/Data/test_images", gasCmap = None):
         '''This is pretty much the exact same init as the class we inherit from.
         This is kept minimal so we can give the user as much flexibility as
         possible'''
@@ -43,25 +43,25 @@ class Rotation(ImageClass.Image):
         self.imageStyle = imageStyle
 
         self.imageStyleUnpack()
-        #now we package
+		#now we package
         self.paramPack()
         self.fileInfoPack(rotating = False)
 
-        self.baseDataGrabber
+        self.baseDataGrabber()
         
         if nFrames % nCores != 0:
-	    print "Sorry, you need to have nFrames % nCores == 0"
-	    exit(-1)
-		
-        step = nFrames/nCores
+            print "Sorry, you need to have nFrames % nCores == 0"
+            exit(-1)
 
+        step = 360 / (nFrames/nCores)
+        
         for startAngle in range(0, 360, step):
             jobs = []
             for angle in range(startAngle, startAngle + step):
                 # we start some processes up for each angle and kill them after
                 # to keep the memory useage low
                 jobs.append(Process(target = self.makeImageFromBaseData,
-                args = (angle)))
+                args = (angle,)))
 
             for job in jobs:
                 job.start()
@@ -76,7 +76,7 @@ class Rotation(ImageClass.Image):
 
         thisData = copy.deepcopy(self.baseData)
 
-        thisData.ImageParams.angle = angle
+        thisData.imageParams.angle = angle
         thisData.plot_image()
 
         thisData = None
@@ -84,5 +84,5 @@ class Rotation(ImageClass.Image):
         return
 
 if __name__ == "__main__":
-	rot = Rotation(saveDir = "/cosma5/data/dp004/mphf18/test_images")
+	rot = Rotation()
 	rot.makeObjectRotation(objectNumber=1727)

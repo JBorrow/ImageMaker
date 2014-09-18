@@ -368,7 +368,7 @@ def makeStereoImage(text = True, sizeList = [ImageStyles.xsmall],
             fileDir = ("/Webpage/Object%4.0f/Snapshot%2.0f/%s"%(object, snap, size['name']))
 
             delta = 0.15
-            CZD = 10.
+            CZD = 0.
 
             temp = fileDir
 
@@ -433,11 +433,11 @@ def stereoRotationMaker(text = True, sizeList = [ImageStyles.xsmall],
 
 def angleIteratorForStereo(text, sizeList, snapList, nfof, first_fof, fof_step,
     subsample, saveDir, objectList, core):
-    for angle in range(core, 360, 10):
+    for angle in range(core + 30, 360, 10):
         makeStereoImage(text, sizeList, snapList, nfof, first_fof, fof_step,
         subsample, saveDir, objectList, angle)
 
     return
 
 if __name__ == "__main__":
-    stereoRotationMaker(objectList=[1217], sizeList=[ImageStyles.xsmall])
+    stereoRotationMaker(objectList=[9000], sizeList=[ImageStyles.josh_3D])
