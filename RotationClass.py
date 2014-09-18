@@ -78,7 +78,7 @@ class Rotation(ImageClass.Image):
     def makeImageFromBaseData(self, angle = 0):
 		'''Uses self.baseData to create images of some given angle'''
 		thisData = copy.deepcopy(self.baseData)
-		originalSaveDir = thisData.FileInfo.saveDir
+		originalSaveDir = thisData.fileInfo.saveDir
 		thisData.imageParams.angle = angle
 		
 		if self.cameraXDistance:
