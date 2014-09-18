@@ -100,4 +100,6 @@ class Rotation(ImageClass.Image):
 
 if __name__ == "__main__":
 	rot = Rotation()
-	rot.makeObjectRotation(objectNumber=1727)
+	rot.makeObjectRotation(imageStyle = ImageStyles.xsmall,
+    snapNumber = 28, objectNumber = 150, text = True, nFrames = 360,
+	nCores = 10, cameraXDistance = 0.15, cameraZDistance = 10)
