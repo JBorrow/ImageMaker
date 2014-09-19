@@ -14,7 +14,7 @@
 #BSUB -J image_at_position
 #BSUB -eo /cosma/home//mphf18/LogFiles/ObjectWrapper.e%J-%I
 #BSUB -oo /cosma/home//mphf18/LogFiles/ObjectWrapper.o%J-%I
-#BSUB -m cosma-b
+#BSUB -m cosma-c
 
 module load python
 cd ~/RunDir
