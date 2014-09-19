@@ -88,13 +88,17 @@ class Rotation(ImageClass.Image):
 		
 		if self.cameraXDistance:
 			for side in ("left", "right"):
-				thisData.fileInfo.saveDir = originalSaveDir + "/" + side
+				thisData.fileInfo.savedir = originalSaveDir + "/" + side
+				self.ensureDir(thisData.fileInfo.savedir)
 				if side == "left":
 					cXD = self.cameraXDistance
 				elif side == "right":
 					cXD = -self.cameraXDistance
 
-				thisData.plot_image(perspective = True, camera_x_distance = cXD,
+				currentData = copy.deepcopy(thisData) # we need to copy 
+				# otherwise we end up with double the rotation on the left eye
+				currentData.plot_image(perspective = True,
+				camera_x_distance = cXD,
 				camera_z_distance = self.cameraZDistance)
 		else:
 			thisData.plot_image()
@@ -105,6 +109,6 @@ class Rotation(ImageClass.Image):
 
 if __name__ == "__main__":
 	rot = Rotation()
-	rot.makeObjectRotation(imageStyle = ImageStyles.xsmall,
-	snapNumber = 28, objectNumber = 150, text = True, nFrames = 360,
-	nCores = 10, cameraXDistance = 0.15, cameraZDistance = 10)
+	rot.makeObjectRotation(imageStyle = ImageStyles.josh_3D,
+	snapNumber = 28, objectNumber = 9000, text = True, nFrames = 360,
+	nCores = 10, cameraXDistance = 0.15, cameraZDistance = 0)
