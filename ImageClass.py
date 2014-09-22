@@ -185,12 +185,17 @@ class Image(object):
 
     def makeStereoObjectImage(self, objectNumber = 0, snapNumber = 28,
     imageStyle = ImageStyles.xsmall, angle = 0, cameraZDistance = False,
-    cameraXDistance = 0.1):
+    cameraXDistance = 0.1, position = -1):
         '''This creates a stereo image of a given object, saving in left/right
         subdirectories for individual eyes.
         
         We reccommend that the cameraZDistance/cameraXDistance ~ 100'''
-        self.objectNumber = objectNumber
+        if position != -1:
+            self.position = position
+        else:
+            self.objectNumber = objectNumber
+        #we do the above so we can read the correct place - if we specifiy
+        #a position then we read the data from there, else we read obj num
         self.snapNumber = snapNumber
         self.imageStyle = imageStyle
         self.cameraXDistance = cameraXDistance
