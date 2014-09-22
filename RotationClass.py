@@ -113,6 +113,7 @@ class Rotation(ImageClass.Image):
 
 if __name__ == "__main__":
     rot = Rotation()
-    rot.makeObjectRotation(imageStyle = ImageStyles.josh_3D,
-    snapNumber = 28, objectNumber = 9000, text = True, nFrames = 360,
-    nCores = 10, cameraXDistance = 0.15, cameraZDistance = 0)
+    rot.makeObjectRotation(imageStyle = ImageStyles.whole25,
+    snapNumber = 28, position = N.array([0.,0.,0.]), text = True,
+    nFrames = 360, nCores = 10, cameraXDistance = 0.15,
+    cameraZDistance = 25)
