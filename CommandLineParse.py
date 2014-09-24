@@ -28,6 +28,8 @@ Command-line arguments it looks for:
                 #############################################
 '''
 
+import numpy as N
+
 class CommandLineArguments(object):
     '''This class contains all of the functions to parse the data, storing them
     in itself. E.g. the partplot list will be parsed and set as self.partplot
@@ -37,4 +39,28 @@ class CommandLineArguments(object):
         
         return
         
-     
+    def trueFalse(self, arg)
+		'''Supply with either 't' or 'f' and converts to True/False'''
+		if arg == 't':
+			return True
+		elif arg == 'f':
+			return False
+		else:
+			print "You supplied me with %s instead of t or f" % (arg)
+			raise UserWarning 
+
+	def centreConvert(self, arg)
+		'''Takes a string and puts it in a numpy array, e.g.:
+			"0.12 123.4 0.21" -> numpy.array([0.12, 123.4, 0.21])'''
+		split = arg.split()
+		centreList = []
+		for value in split:
+			centreList.append(float(value))
+
+		return N.array(centreList)
+
+	def imageStyleConvert(self, arg)
+		'''Takes the string and compares it with a list of possible names in the
+		ImageStyle class, then returns the dictionary associated with it'''
+
+		return
