@@ -14,8 +14,9 @@
 #BSUB -J image_at_position
 #BSUB -eo /cosma/home//mphf18/LogFiles/ObjectWrapper.e%J-%I
 #BSUB -oo /cosma/home//mphf18/LogFiles/ObjectWrapper.o%J-%I
-#BSUB -m cosma-a
+#BSUB -m cosma-b
 
 module load python
 cd /cosma5/data/Eagle/rgbTestRuns/Planck/L0025N0376/PE/Z0p10_W1p00_E_3p0_0p3_ALPHA1p0e6_rhogas1_reposlim3p0soft_100mgas/
+cd ~/RunDir
 python ~/ImageMaker/RotationClass.py
