@@ -3,10 +3,10 @@ This class is used to create rotations of objects for EAGLE.
 
 Inherits from ImageClass
 
-Joshua Borrow																   
-28/07/2014																	  
-Institute For Computataional Cosmology, Durham University					   
-The EAGLE Project															   
+Joshua Borrow                                                                  
+28/07/2014                                                                    
+Institute For Computataional Cosmology, Durham University                      
+The EAGLE Project                                                              
 joshua.borrow@durham.ac.uk
 '''
 
