@@ -161,23 +161,11 @@ class Image3D(object):
 
 	def makeDir3D(self):
 		'''Iterates over all of the files in the fileList'''
-		processcount = 0
-		jobs = []
-		for i, file in enumerate(self.fileList):	
-			if processcount < 10:
-				print "Making image %i of %i" % (i + 1, len(self.fileList))
-				jobs.append(Process(target = self.imageTo3D,
-				args = (self.rightDir + "/" + file,
-				self.leftDir + "/" + file, self.saveDir + "/" + file)))
-				processcount += 1
-			else:
-				for job in jobs:
-					job.start()
-				for job in jobs:
-					job.join()
-				processcount = 0
-				jobs = []
-
+		for i, file in enumerate(self.fileList):
+			print "Making image %i of %i" % (i + 1, len(self.fileList))
+			self.imageTo3D(self.rightDir + "/" + file,
+			self.leftDir + "/" + file, self.saveDir + "/" + file)
+	
 		return
 
 if __name__ == "__main__":
