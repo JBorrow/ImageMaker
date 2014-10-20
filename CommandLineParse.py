@@ -190,6 +190,8 @@ class CommandLineArguments(object):
 			imageStyle = ImageStyles.supersize_rotation
 		elif 'supersize_simple' == arg:
 			imageStyle = ImageStyles.supersize_simple
+		elif 'supersize80' == arg:
+			imageStyle = ImageStyles.supersize80
 		elif 'custom' == arg:
 			imageStyle = ImageStyles.custom
 		elif 'app' == arg:

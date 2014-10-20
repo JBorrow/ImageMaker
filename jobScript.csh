@@ -10,13 +10,12 @@
 
 #BSUB -P dp004-eagle
 #BSUB -q shm5
-#BSUB -M 150000  # maximum memory required.  For 25 Mpc
+#BSUB -M 450000  # maximum memory required.  For 25 Mpc
 #BSUB -J image_at_position
 #BSUB -eo /cosma/home//mphf18/LogFiles/ObjectWrapper.e%J-%I
 #BSUB -oo /cosma/home//mphf18/LogFiles/ObjectWrapper.o%J-%I
-#BSUB -m cosma-b
+#BSUB -m cosma-f
 
 module load python
-cd /cosma5/data/Eagle/rgbTestRuns/Planck/L0025N0376/PE/Z0p10_W1p00_E_3p0_0p3_ALPHA1p0e6_rhogas1_reposlim3p0soft_100mgas/
 cd ~/RunDir
-python ~/ImageMaker/RotationClass.py
+python ~/ImageMaker/CommandLineParse.py -c "0.2 0.2 0.2" -sd "/cosma/home/mphf18/Data" -is "supersize80" -czd 100

@@ -247,6 +247,20 @@ class ImageStyles:
     'text' : False
     }
 
+	
+    supersize80 = {
+    'name' : 'supersize80',
+    'width' : N.array([80., 80., 80.]),
+    'scale' : [0.2, 500.],
+    'star_scale_factor' : 1.,
+    'dark_scale_factor' : 50000.,
+    'gas_cmap' : None,
+    'T_limits' : [4.5,5.5,10.],
+    'pixels' : [2048,2048],
+    'opacity' : 0.2,
+    'text' : False
+    }
+
     supersize_super_hr = {
     'name' : 'supersize_super_hr',
     'width' : N.array([100., 100., 20.]),
