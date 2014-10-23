@@ -118,7 +118,7 @@ class Image(object):
 		self.ensureDir(self.totalDir)
 
 		self.fileInfo = eagle.FileInfo(".", self.snapNumber, "", self.totalDir,
-		rotating = rotating, self.snipShot)
+		rotating = rotating, snipshot = self.snipShot)
 
 		return
 		
