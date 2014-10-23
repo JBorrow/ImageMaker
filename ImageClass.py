@@ -24,13 +24,15 @@ class Image(object):
 	number or position etc.'''
  
 	def __init__(self, partplot = [True, True, True, True, True],
-	saveDir = "/cosma/home/mphf18/Data/test_images", gasCmap = None):
+	saveDir = "/cosma/home/mphf18/Data/test_images", gasCmap = None,
+	subsample = 1):
 		'''We want to minise on the amount of things given to the init so that
 		we can have maximum flexibility. I think these two are fair as they are
 		unlikely to be changed during a script'''
 		self.partplot = partplot
 		self.saveDir = saveDir
 		self.gasCmap = gasCmap
+		self.subsample = subsample
 	
 		return
 		
@@ -93,7 +95,8 @@ class Image(object):
 		T_limits = self.tLimits, use_logh = self.useLogh,
 		perspective = self.perspective,
 		camera_z_distance = self.cameraZDistance,
-		opacity = self.opacity)
+		opacity = self.opacity,
+		subsample = self.subsample)
 
 		self.plotParams = eagle.PlotParams(xpixels = self.xPixels, 
 		ypixels = self.yPixels, text = self.useText)

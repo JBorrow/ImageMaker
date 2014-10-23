@@ -8,7 +8,8 @@ from multiprocessing import Process
 
 def make_image(snip, angle):
 	# make me a rotation instance
-	image_maker = Rotation(saveDir="/cosma/home/mphf18/Data/HugeRot")
+	image_maker = Rotation(saveDir="/cosma/home/mphf18/Data/HugeRot",
+						   subsample=10)
 
 	Rotation.makePosImage(imageStyle=ImageStyles.wanhundrad,
 								snapNumber=snip,

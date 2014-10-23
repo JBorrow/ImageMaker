@@ -20,7 +20,8 @@ class Rotation(ImageClass.Image):
 	minimal'''
 	
 	def __init__(self, partplot = [True, True, True, True, True],
-	saveDir = "/cosma/home/mphf18/Data/test_images", gasCmap = None):
+	saveDir = "/cosma/home/mphf18/Data/test_images", gasCmap = None,
+	subsample = 1):
 		'''This is pretty much the exact same init as the class we inherit from.
 		This is kept minimal so we can give the user as much flexibility as
 		possible'''
@@ -28,6 +29,7 @@ class Rotation(ImageClass.Image):
 		self.partplot = partplot
 		self.saveDir = saveDir
 		self.gasCmap = gasCmap
+		self.subsample = subsample
 		
 		return
 
