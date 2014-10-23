@@ -10,7 +10,7 @@
 
 #BSUB -P dp004-eagle
 #BSUB -q shm5
-#BSUB -M 450000  # maximum memory required.  For 25 Mpc
+#BSUB -M 250000  # maximum memory required.  For 25 Mpc
 #BSUB -J image_at_position
 #BSUB -eo /cosma/home//mphf18/LogFiles/ObjectWrapper.e%J-%I
 #BSUB -oo /cosma/home//mphf18/LogFiles/ObjectWrapper.o%J-%I
@@ -18,4 +18,4 @@
 
 module load python
 cd ~/RunDir
-python ~/ImageMaker/CommandLineParse.py -c "0.2 0.2 0.2" -sd "/cosma/home/mphf18/Data" -is "supersize80" -czd 100
+python ~/ImageMaker/RotScript.py
