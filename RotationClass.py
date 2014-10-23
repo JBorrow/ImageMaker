@@ -69,7 +69,7 @@ class Rotation(ImageClass.Image):
 		self.baseDataGrabber()
 		
 		if nFrames % nCores != 0:
-			print "Sorry, you need to have nFrames % nCores == 0"
+			print "Sorry, you need to have nFrames \% nCores == 0"
 			exit(-1)
 
 		step = 360 / (nFrames/nCores)
