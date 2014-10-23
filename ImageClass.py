@@ -114,8 +114,9 @@ class Image(object):
 			% (self.objectNumber, self.snapNumber, self.size))
 		except AttributeError:
 			#catch the case where we have a position not an object defined
-			self.totalDir = (self.saveDir + "/Webpage/Centre%3.2f_%3.2f_%3.2f/\
-			Snapshot%d/%s/" % (self.position[0], self.position[1],
+			self.totalDir = (self.saveDir +
+			"/Webpage/Centre%3.2f_%3.2f_%3.2f/Snapshot%d/%s/" %
+			(self.position[0], self.position[1],
 			self.position[2], self.snapNumber, self.size))
 
 		self.ensureDir(self.totalDir)
