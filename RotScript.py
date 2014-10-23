@@ -11,7 +11,7 @@ def make_image(snip, angle):
 	image_maker = Rotation(saveDir="/cosma/home/mphf18/Data/HugeRot",
 						   subsample=10)
 
-	Rotation.makePosImage(imageStyle=ImageStyles.wanhundrad,
+	image_maker.makePosImage(imageStyle=ImageStyles.wanhundrad,
 								snapNumber=snip,
 								position = numpy.array([0., 0., 0.]),
 								angle=angle)
