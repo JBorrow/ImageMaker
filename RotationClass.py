@@ -33,13 +33,16 @@ class Rotation(ImageClass.Image):
 
 	def makeObjectRotation(self, imageStyle = ImageStyles.xsmall,
 	snapNumber = 28, objectNumber = 0, text = True, nFrames = 360,
-	nCores = 4, cameraXDistance = 0, cameraZDistance = 10, position = -1):
+	nCores = 4, cameraXDistance = 0, cameraZDistance = 10, position = -1,
+	snipShot = False):
 		'''This requires a number of frames and number of cores, which have
 		defaults of 360 and 4 respecvitely. nFrames % nCores must be equal to 0
 		otherwise we will have missed frames.
 
 		To make a 3-D rotation,. simply supply a cameraXDistance (reccomend
-		a 1:75 ratio of CXD : CZD'''
+		a 1:75 ratio of CXD : CZD
+
+		Set snipShot = True if you want to read snipshots not snapshots'''
 
 		# first we get the 'baseData' which contains all the info for us to plot
 		if position is not -1:
@@ -51,6 +54,7 @@ class Rotation(ImageClass.Image):
 		self.snapNumber = snapNumber
 		self.imageStyle = imageStyle
 		self.cameraXDistance = cameraXDistance
+		self.snipShot = snipShot
 		self.imageStyleUnpack()
 		if cameraXDistance:
 			# if they want to make a 3D image, set the z dist too

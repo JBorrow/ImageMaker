@@ -118,7 +118,7 @@ class Image(object):
 		self.ensureDir(self.totalDir)
 
 		self.fileInfo = eagle.FileInfo(".", self.snapNumber, "", self.totalDir,
-		rotating = rotating)
+		rotating = rotating, self.snipShot)
 
 		return
 		
@@ -147,10 +147,13 @@ class Image(object):
 		return
 
 	def makeObjectImage(self, objectNumber = 0, snapNumber = 28,
-	imageStyle = ImageStyles.xsmall, angle = 0):
+	imageStyle = ImageStyles.xsmall, angle = 0, snipShot = False):
+		"""Make an image of an object. Set snipShot=True to read a
+		snipshot rather than a snapshot"""
 		self.objectNumber = objectNumber
 		self.snapNumber = snapNumber
 		self.imageStyle = imageStyle
+		self.snipShot = snipShot
 		
 		self.imageStyleUnpack()
 		#package parameters ready for passing to eagle
@@ -165,10 +168,13 @@ class Image(object):
 		return
 
 	def makePosImage(self, position = N.array([0., 0., 0.]), snapNumber = 28,
-	imageStyle = ImageStyles.xsmall, angle = 0):
+	imageStyle = ImageStyles.xsmall, angle = 0, snipShot = False):
+		"""Make an image of a specified position. Set snipShot=True to read
+		a snipshot rather than a snapshot"""
 		self.position = position
 		self.snapNumber = snapNumber
 		self.imageStyle = imageStyle
+		self.snipShot = snipShot
 		
 		self.imageStyleUnpack()
 		self.angle = angle
@@ -183,11 +189,13 @@ class Image(object):
 
 	def makeStereoObjectImage(self, objectNumber = 0, snapNumber = 28,
 	imageStyle = ImageStyles.xsmall, angle = 0, cameraZDistance = False,
-	cameraXDistance = 0.1, position = -1):
+	cameraXDistance = 0.1, position = -1, snipShot = False):
 		'''This creates a stereo image of a given object, saving in left/right
 		subdirectories for individual eyes.
 		
-		We reccommend that the cameraZDistance/cameraXDistance ~ 100'''
+		We reccommend that the cameraZDistance/cameraXDistance ~ 100
+
+		Set snipShot = True to read a snipshot rather than snapshot'''
 		if position != -1:
 			self.position = position
 		else:
@@ -197,6 +205,7 @@ class Image(object):
 		self.snapNumber = snapNumber
 		self.imageStyle = imageStyle
 		self.cameraXDistance = cameraXDistance
+		self.snipShot = snipShot
 
 		self.imageStyleUnpack()
 		self.angle = angle

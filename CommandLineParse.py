@@ -7,6 +7,7 @@ Command-line arguments it looks for:
 	-o <objectNumber>                   Object number
 	-c "<x> <y> <z>"                    Center. If specified ignores Obj num
 	-sn <snapNumber>                    Snapshot number
+	-ss <t/f>							Set = t if read Snipshot not Snapshot
 	-sd <saveDir>                       Save directory. No ~/, only direct
 										NO DEFAULT - REQUIRED
 	-is <imageStyle>                    Image style name (see ImageStyles.py)
@@ -62,6 +63,11 @@ class CommandLineArguments(object):
 			print "Warning: no snap specified - default = 28"
 			# 28 == z=0
 			self.snapNumber = 28
+
+		if "-ss" in self.CLI:
+			self.snipShot = self.trueFalse(self.argumentGrabber("-ss"))
+		else:
+			self.snipShot = False
 
 		if "-sd" in self.CLI:
 			self.saveDir = self.argumentGrabber("-sd")
@@ -235,17 +241,20 @@ if __name__ == "__main__":
 									  nCores=CLI.nCores,
 									  cameraXDistance=CLI.cameraXDistance,
 									  cameraZDistance=CLI.cameraZDistance,
-									  position=CLI.position)
+									  position=CLI.position,
+									  snipShot = CLI.snipShot)
 	else:
 		if CLI.position is not -1:
 			ImageMaker.makePosImage(position=CLI.position,
 									snapNumber=CLI.snapNumber,
-									imageStyle=CLI.imageStyle)
+									imageStyle=CLI.imageStyle,
+									snipShot = CLI.snipShot)
 
 		elif not CLI.ThreeD:
 			ImageMaker.makeObjectImage(objectNumber=CLI.objectNumber,
 									   snapNumber=CLI.snapNumber,
-									   imageStyle=CLI.imageStyle)
+									   imageStyle=CLI.imageStyle,
+									   snipShot = CLI.snipShot)
 		else:
 			# This deals with position + objectNumber internally
 			ImageMaker.makeStereoObjectImage(objectNumber=CLI.objectNumber,
@@ -254,4 +263,5 @@ if __name__ == "__main__":
 											 angle=0,
 											 cameraZDistance=CLI.cameraZDistance,
 											 cameraXDistance=CLI.cameraXDistance,
-											 position=CLI.position)
+											 position=CLI.position,
+											 snipShot = CLI.snipShot)
