@@ -14,7 +14,8 @@ def make_image(snip, angle):
 	image_maker.makePosImage(imageStyle=ImageStyles.wanhundrad,
 								snapNumber=snip,
 								position = numpy.array([0., 0., 0.]),
-								angle=angle)
+								angle=angle,
+								snipShot=True)
 	return
 
 for snip in reversed(range(406)):
