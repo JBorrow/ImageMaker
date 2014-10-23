@@ -261,6 +261,19 @@ class ImageStyles:
     'text' : False
     }
 
+    wanhundrad = {
+    'name' : 'wanhundrad',
+    'width' : N.array([100., 100., 100.]),
+    'scale' : [0.2, 500.],
+    'star_scale_factor' : 1.,
+    'dark_scale_factor' : 50000.,
+    'gas_cmap' : None,
+    'T_limits' : [4.5,5.5,10.],
+    'pixels' : [4096,4096],
+    'opacity' : 0.2,
+    'text' : False
+    }
+
     supersize_super_hr = {
     'name' : 'supersize_super_hr',
     'width' : N.array([100., 100., 20.]),
