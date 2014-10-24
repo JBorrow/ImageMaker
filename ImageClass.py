@@ -200,7 +200,7 @@ class Image(object):
 		We reccommend that the cameraZDistance/cameraXDistance ~ 100
 
 		Set snipShot = True to read a snipshot rather than snapshot'''
-		if position != -1:
+		if position is not -1:
 			self.position = position
 		else:
 			self.objectNumber = objectNumber
