@@ -9,7 +9,7 @@ from multiprocessing import Process
 def make_image(snip, angle):
 	# make me a rotation instance
 	image_maker = Rotation(saveDir="/cosma/home/mphf18/Data/HugeRot",
-						   subsample=10)
+						   subsample=1)
 
 	image_maker.makePosImage(imageStyle=ImageStyles.wanhundrad,
 								snapNumber=snip,
