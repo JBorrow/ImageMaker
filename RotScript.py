@@ -15,7 +15,9 @@ def make_image(snip, angle):
 								snapNumber=snip,
 								position = numpy.array([0., 0., 0.]),
 								angle=angle,
-								snipShot=True)
+								snipShot=True,
+								cameraXDistance=1.,
+								cameraZDistance=100.)
 	return
 
 for snip in reversed(range(406)):
