@@ -256,7 +256,7 @@ class ImageStyles:
     'dark_scale_factor' : 50000.,
     'gas_cmap' : None,
     'T_limits' : [4.5,5.5,10.],
-    'pixels' : [2048,2048],
+    'pixels' : [4096,4096],
     'opacity' : 0.2,
     'text' : False
     }
