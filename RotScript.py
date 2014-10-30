@@ -11,13 +11,13 @@ def make_image(snip, angle):
 	image_maker = Rotation(saveDir="/cosma/home/mphf18/Data/HugeRot",
 						   subsample=10)
 
-	image_maker.makeStereoObjectImage(imageStyle=ImageStyles.supersize80,
+	image_maker.makeStereoObjectImage(imageStyle=ImageStyles.whole25,
 								snapNumber=snip,
 								position = numpy.array([0., 0., 0.]),
 								angle=angle,
 								snipShot=True,
 								cameraXDistance=1.,
-								cameraZDistance=100.)
+								cameraZDistance=50.)
 	return
 
 for snip in reversed(range(406)):
